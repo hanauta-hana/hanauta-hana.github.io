@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>花詩 はな | 公式サイト</title>
+<meta name="description" content="花詩はな(Mirrativ配信者・VTuber)の公式サイト。毎日17:30と22:00に雑談配信しています。">
+<meta name="theme-color" content="#f6a8c8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="花詩はな">
+<meta property="og:type" content="website">
+<meta property="og:title" content="花詩 はな | 公式サイト">
+<meta property="og:description" content="毎日17:30と22:00に雑談配信。おみくじ・スタンプカードもあるよ🌸">
+<meta property="og:image" content="img/icon-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="petals" id="petals" aria-hidden="true"></div>
+
+<header class="top">
+  <h1 class="logo-wrap"><img src="img/logo.png" alt="花詩 はな" class="logo"></h1>
+</header>
+
+<main>
+<!-- ================= TOP ================= -->
+<section class="page active" id="page-top" aria-label="トップ">
+  <div class="hero card">
+    <div class="hero-img"><img src="img/hero-bg.webp" alt="花詩はなのイラスト(桜の和装)"></div>
+    <div class="hero-body">
+      <p class="catch">💗 ゆるっと毎日おしゃべり配信 🌸</p>
+      <p class="sub">雑談・歌・ゲームをのんびりお届け。<br>専属飼い主さん、いつでも遊びにきてね。</p>
+      <a class="btn big" id="btn-live" href="https://www.mirrativ.com/user/155617998" target="_blank" rel="noopener">🌸 Mirrativで配信を見る</a>
+      <a class="btn ghost" href="https://x.com/hana_game0705" target="_blank" rel="noopener">𝕏 はなのXをみる</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="h"><span class="rb"></span>今週の配信予定</h2>
+    <p class="note" id="week-range"></p>
+    <ul class="week" id="week"></ul>
+    <p class="note small">※急なお休み・変更はXでお知らせします</p>
+  </div>
+
+  <div class="card">
+    <h2 class="h"><span>🌸</span>お知らせ</h2>
+    <ul class="news" id="news"></ul>
+  </div>
+</section>
+
+<!-- ================= PROFILE ================= -->
+<section class="page" id="page-profile" aria-label="プロフィール">
+  <div class="card">
+    <h2 class="h"><span class="rb"></span>プロフィール</h2>
+    <div class="outfit-stage">
+      <img id="outfit-img" src="img/outfit-kimono.webp" alt="花詩はなの立ち絵">
+    </div>
+    <div class="outfit-tabs" role="tablist" aria-label="衣装きりかえ">
+      <button class="chip on" data-outfit="img/outfit-kimono.webp" role="tab">🌸 桜和装</button>
+      <button class="chip" data-outfit="img/outfit-nurse.webp" role="tab">🩷 ナース</button>
+      <button class="chip" data-outfit="img/outfit-gothic.webp" role="tab">🐈‍⬛ 黒猫</button>
+    </div>
+    <dl class="prof">
+      <div><dt>名前</dt><dd>花詩 はな <small>(はなうた はな)</small></dd></div>
+      <div><dt>誕生日</dt><dd>7月5日</dd></div>
+      <div><dt>好きなもの</dt><dd>猫・甘いお菓子</dd></div>
+      <div><dt>配信</dt><dd>雑談・歌・ゲーム</dd></div>
+      <div><dt>ファンネーム</dt><dd>専属飼い主</dd></div>
+      <div><dt>タグ</dt><dd class="tags"><span>#はなちゃむとぬくぬく</span><span>#はなちゃむアート</span></dd></div>
+    </dl>
+  </div>
+
+  <div class="card chibi-card">
+    <img src="img/chibi.png" alt="ちびはな" class="chibi">
+    <div>
+      <h2 class="h"><span>🌸</span>ひとこと</h2>
+      <p>はなの配信に来てくれてありがとう！<br>のんびり雑談しながら、ゆるっと過ごせる場所を目指してます💗</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="h"><span>🎮</span>配信のひとこま</h2>
+    <div class="strip">
+      <img src="img/game-9883.webp" alt="ゲーム配信の画面" loading="lazy">
+      <img src="img/game-9884.webp" alt="ゲーム配信の画面" loading="lazy">
+      <img src="img/game-9885.webp" alt="ゲーム配信の画面" loading="lazy">
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 class="h"><span>🔗</span>リンク</h2>
+    <ul class="links">
+      <li><a href="https://www.mirrativ.com/user/155617998" target="_blank" rel="noopener"><b>Mirrativ</b><small>配信・アーカイブ</small></a></li>
+      <li><a href="https://x.com/hana_game0705" target="_blank" rel="noopener"><b>X</b><small>@hana_game0705</small></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= PLAY ================= -->
+<section class="page" id="page-play" aria-label="あそぶ・ご連絡">
+  <div class="seg" role="tablist" aria-label="あそぶメニュー">
+    <button class="seg-btn on" data-seg="omikuji" role="tab">💗 おみくじ</button>
+    <button class="seg-btn" data-seg="stamp" role="tab">🌸 スタンプ</button>
+    <button class="seg-btn" data-seg="msg" role="tab">💬 メッセージ</button>
+    <button class="seg-btn" data-seg="contact" role="tab">✉️ 連絡</button>
+  </div>
+
+  <!-- おみくじ -->
+  <div class="card seg-body on" id="seg-omikuji">
+    <h2 class="h"><span class="rb"></span>はなのおみくじ</h2>
+    <p class="note">1日1回ひけます。ひくとスタンプカードにスタンプが押されるよ🌸</p>
+    <div class="omikuji">
+      <button class="box" id="omikuji-btn" aria-label="おみくじをひく">
+        <span class="box-ribbon"><b class="rb"></b></span>
+        <span class="box-txt">タップしてひく</span>
+      </button>
+      <div class="result" id="omikuji-result" hidden>
+        <p class="rank" id="o-rank"></p>
+        <p class="msg" id="o-msg"></p>
+        <p class="item" id="o-item"></p>
+        <a class="btn ghost" id="o-share" href="#" target="_blank" rel="noopener">𝕏 結果をポストする</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- スタンプ -->
+  <div class="card seg-body" id="seg-stamp">
+    <h2 class="h"><span>🌸</span>スタンプカード</h2>
+    <p class="note">おみくじをひいた日にスタンプが1つ。10個たまるとごほうびメッセージ！</p>
+    <div class="stamp-card" id="stamp-card"></div>
+    <p class="stamp-count" id="stamp-count"></p>
+    <div class="reward" id="stamp-reward" hidden>
+      🎉 コンプリートおめでとう！<br>
+      この画面をスクショして、配信中にはなに見せてね💗
+    </div>
+  </div>
+
+  <!-- 匿名メッセージ -->
+  <div class="card seg-body" id="seg-msg">
+    <h2 class="h"><span>💬</span>匿名メッセージ</h2>
+    <p class="note">お名前なしで、はなにメッセージを送れます。配信で読ませていただくことがあります。</p>
+    <form class="form" id="form-msg">
+      <label>メッセージ <small id="msg-len">0/300</small>
+        <textarea name="body" rows="5" maxlength="300" required placeholder="感想・質問・応援など、なんでもどうぞ🌸"></textarea>
+      </label>
+      <label class="check"><input type="checkbox" name="read_ok" checked> 配信で読まれてもOK</label>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn big" type="submit">💬 そうしんする</button>
+      <p class="form-status" id="msg-status" role="status"></p>
+    </form>
+  </div>
+
+  <!-- お問い合わせ -->
+  <div class="card seg-body" id="seg-contact">
+    <h2 class="h"><span>✉️</span>お問い合わせ</h2>
+    <p class="note">お仕事・コラボなどのご連絡はこちらから。返信が必要な場合は連絡先をご記入ください。</p>
+    <form class="form" id="form-contact">
+      <label>お名前
+        <input type="text" name="name" required maxlength="50" placeholder="お名前 / ニックネーム">
+      </label>
+      <label>返信先 <small>(XのID・メールなど)</small>
+        <input type="text" name="reply_to" required maxlength="100" placeholder="@xxxx / xxx@example.com">
+      </label>
+      <label>ご用件
+        <select name="kind">
+          <option>コラボ・企画のご相談</option>
+          <option>お仕事のご依頼</option>
+          <option>その他</option>
+        </select>
+      </label>
+      <label>内容 <small id="ct-len">0/1000</small>
+        <textarea name="body" rows="6" maxlength="1000" required></textarea>
+      </label>
+      <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn big" type="submit">✉️ そうしんする</button>
+      <p class="form-status" id="ct-status" role="status"></p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <p>© 2026 花詩 はな</p>
+  <p class="made">制作：イロハミント（湊音ヒロ）</p>
+</footer>
+
+<nav class="tabbar" aria-label="メインメニュー">
+  <button class="tab on" data-page="top"><i>🏠</i><span>ホーム</span></button>
+  <button class="tab" data-page="profile"><i><b class="rb"></b></i><span>プロフィール</span></button>
+  <button class="tab" data-page="play"><i>🌸</i><span>あそぶ</span></button>
+</nav>
+
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
