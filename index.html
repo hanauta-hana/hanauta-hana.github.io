@@ -58,47 +58,27 @@
 <section class="page" id="page-profile" aria-label="プロフィール">
   <div class="card">
     <h2 class="h"><span class="rb"></span>プロフィール</h2>
-    <div class="outfit-stage">
-      <img id="outfit-img" src="img/outfit-kimono.webp" alt="花詩はなの立ち絵">
-    </div>
-    <div class="outfit-tabs" role="tablist" aria-label="衣装きりかえ">
-      <button class="chip on" data-outfit="img/outfit-kimono.webp" role="tab">🌸 桜和装</button>
-      <button class="chip" data-outfit="img/outfit-nurse.webp" role="tab">🩷 ナース</button>
-      <button class="chip" data-outfit="img/outfit-gothic.webp" role="tab">🐈‍⬛ 黒猫</button>
-    </div>
-    <dl class="prof">
-      <div><dt>名前</dt><dd>花詩 はな <small>(はなうた はな)</small></dd></div>
-      <div><dt>誕生日</dt><dd>7月5日</dd></div>
-      <div><dt>好きなもの</dt><dd>猫・甘いお菓子</dd></div>
-      <div><dt>配信</dt><dd>雑談・歌・ゲーム</dd></div>
-      <div><dt>ファンネーム</dt><dd>専属飼い主</dd></div>
-      <div><dt>タグ</dt><dd class="tags"><span>#はなちゃむとぬくぬく</span><span>#はなちゃむアート</span></dd></div>
-    </dl>
+    <div class="outfit-stage"><img id="outfit-img" src="" alt="花詩はなの立ち絵"></div>
+    <div class="outfit-tabs" id="outfit-tabs" role="tablist" aria-label="衣装きりかえ"></div>
+    <dl class="prof" id="prof"></dl>
   </div>
 
   <div class="card chibi-card">
     <img src="img/chibi.png" alt="ちびはな" class="chibi">
     <div>
       <h2 class="h"><span>🌸</span>ひとこと</h2>
-      <p>はなの配信に来てくれてありがとう！<br>のんびり雑談しながら、ゆるっと過ごせる場所を目指してます💗</p>
+      <p id="hitokoto"></p>
     </div>
   </div>
 
-  <div class="card">
+  <div class="card" id="gallery-card">
     <h2 class="h"><span>🎮</span>配信のひとこま</h2>
-    <div class="strip">
-      <img src="img/game-9883.webp" alt="ゲーム配信の画面" loading="lazy">
-      <img src="img/game-9884.webp" alt="ゲーム配信の画面" loading="lazy">
-      <img src="img/game-9885.webp" alt="ゲーム配信の画面" loading="lazy">
-    </div>
+    <div class="strip" id="gallery"></div>
   </div>
 
   <div class="card">
     <h2 class="h"><span>🔗</span>リンク</h2>
-    <ul class="links">
-      <li><a href="https://www.mirrativ.com/user/155617998" target="_blank" rel="noopener"><b>Mirrativ</b><small>配信・アーカイブ</small></a></li>
-      <li><a href="https://x.com/hana_game0705" target="_blank" rel="noopener"><b>X</b><small>@hana_game0705</small></a></li>
-    </ul>
+    <ul class="links" id="links"></ul>
   </div>
 </section>
 
@@ -197,6 +177,7 @@
 </nav>
 
 <script src="config.js"></script>
+<script src="api.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
