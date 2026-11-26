@@ -11,7 +11,7 @@ st.textContent='#gate{position:fixed;inset:0;z-index:99999;display:grid;place-it
 '#gate .ng{min-height:1.4em;margin-top:8px;font-size:13px;font-weight:700;color:#c26a8a}';
 document.head.appendChild(st);
 var g=document.createElement('div');g.id='gate';
-g.innerHTML='<form><h1>花詩 はな</h1><p>試作中のため、パスワードを入れてね</p><input type="password" id="gate-pw" placeholder="パスワード" autocomplete="off"><button type="submit">ひらく</button><div class="ng" id="gate-ng"></div></form>';
+g.innerHTML='<form><h1>花詩 はな</h1><p>試作中のため、パスワードを入れてね</p><input type="password" id="gate-pw" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="4けたの数字" autocomplete="off"><button type="submit">ひらく</button><div class="ng" id="gate-ng"></div></form>';
 document.body.appendChild(g);
 function sha(t){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return('0'+x.toString(16)).slice(-2)}).join('')})}
 g.querySelector('form').addEventListener('submit',function(e){
