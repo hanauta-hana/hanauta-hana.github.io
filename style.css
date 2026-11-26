@@ -220,5 +220,5 @@ main{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:10px 14px
 .ob-dots i.on{background:var(--pink-deep);width:20px;border-radius:6px}
 
 /* トップはロゴをイラスト右上に */
-.hero-logo{position:absolute;top:4px;right:2px;width:47%;height:auto;filter:drop-shadow(0 2px 6px rgba(107,40,70,.45))}
+.hero-logo{position:absolute;top:2px;right:0;width:40%;height:auto;filter:drop-shadow(0 2px 6px rgba(107,40,70,.45))}
 body.on-top .top{display:none}
