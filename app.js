@@ -39,7 +39,7 @@ var store = {
 /* ---------- タブ切り替え(URLのハッシュ対応) ---------- */
 function showPage(name,push){
   if(!$('#page-'+name)) name='top';
-  $$('.page').forEach(function(p){p.classList.toggle('active',p.id==='page-'+name)});document.body.classList.toggle('on-top',name==='top');
+  $$('.page').forEach(function(p){p.classList.toggle('active',p.id==='page-'+name)});document.body.classList.toggle('on-top',name==='top'||name==='profile');
   $$('.tab').forEach(function(t){t.classList.toggle('on',t.dataset.page===name)});
   if(push!==false) history.replaceState(null,'','#'+name);
   window.scrollTo({top:0,behavior:'smooth'});
@@ -293,6 +293,6 @@ bindForm('#form-contact','#ct-status','#ct-len',T.contacts,1000,function(f){
   }
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   document.addEventListener('click',function(e){
-    var t=e.target; if(t.classList&&(t.classList.contains('hero-logo')||t.classList.contains('logo')))storm(e);
+    var t=e.target; if(t.classList&&(t.classList.contains('hero-logo')||t.classList.contains('logo')||t.classList.contains('stage-logo')))storm(e);
   });
 })();

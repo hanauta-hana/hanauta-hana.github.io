@@ -332,3 +332,7 @@ body.lb-open{overflow:hidden}
 .fm img:nth-child(2){height:30px}
 .fm img:nth-child(3){transform:scaleX(-1) rotate(8deg)}
 .fm img:nth-child(1){transform:rotate(-8deg)}
+
+/* プロフィール: ロゴを立ち絵の右上に小さく */
+.outfit-stage img.stage-logo{position:absolute;top:6px;right:2px;width:38%;height:auto;margin:0;z-index:2;cursor:pointer;
+  filter:drop-shadow(0 2px 5px rgba(107,40,70,.35));animation:logo-float 3.6s ease-in-out infinite}
