@@ -325,3 +325,10 @@ body.lb-open{overflow:hidden}
 .h{font-size:20px}
 .catch{font-size:20px}
 .h span{-webkit-text-stroke:0;text-shadow:none}
+
+/* 推しマ(桜・リボン・桜) */
+.fm{display:flex;justify-content:center;align-items:center;gap:6px;margin:0 0 4px}
+.fm img{display:block;height:26px;width:auto}
+.fm img:nth-child(2){height:30px}
+.fm img:nth-child(3){transform:scaleX(-1) rotate(8deg)}
+.fm img:nth-child(1){transform:rotate(-8deg)}
