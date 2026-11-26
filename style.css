@@ -318,22 +318,3 @@ body.lb-open{overflow:hidden}
 @keyframes hero-shine{0%{transform:translateX(-120%)}30%,100%{transform:translateX(120%)}}
 .hero-logo{z-index:2}
 @media (prefers-reduced-motion:reduce){.outfit-stage img,.outfit-stage::before,.hero-img>img:first-child,.hero-img::after,.hero-img::before{animation:none}}
-
-/* 立ち絵の背景: 左右の隅から桜の枝 */
-.outfit-stage{background:
-    url(img/branch-l.png) -20px -12px/38% auto no-repeat,
-    url(img/branch-r.png) calc(100% + 20px) -4px/36% auto no-repeat,
-    radial-gradient(circle at 18% 16%,rgba(255,255,255,.85) 0 7px,transparent 8px),
-    radial-gradient(circle at 82% 22%,rgba(255,255,255,.7) 0 11px,transparent 12px),
-    radial-gradient(circle at 10% 48%,rgba(255,255,255,.6) 0 9px,transparent 10px),
-    radial-gradient(circle at 92% 58%,rgba(255,255,255,.65) 0 6px,transparent 7px),
-    radial-gradient(ellipse 70% 55% at 50% 48%,var(--g1) 0,transparent 70%),
-    linear-gradient(180deg,var(--g2) 0,var(--g3) 100%)}
-.outfit-stage[data-o="2"]{background:
-    url(img/branch-l.png) -20px -12px/38% auto no-repeat,
-    url(img/branch-r.png) calc(100% + 20px) -4px/36% auto no-repeat,
-    radial-gradient(circle at 18% 16%,rgba(255,255,255,.85) 0 7px,transparent 8px),
-    radial-gradient(circle at 82% 22%,rgba(255,255,255,.7) 0 11px,transparent 12px),
-    radial-gradient(circle at 10% 48%,rgba(255,255,255,.6) 0 9px,transparent 10px),
-    radial-gradient(ellipse 70% 55% at 50% 48%,var(--g1) 0,transparent 70%),
-    linear-gradient(180deg,var(--g2) 0,var(--g3) 100%)}
