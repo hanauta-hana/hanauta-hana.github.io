@@ -256,3 +256,18 @@ body.on-top .top{display:none}
 .lb-x{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px;width:42px;height:42px;border-radius:50%;border:2px solid #fff;
   background:rgba(255,255,255,.85);color:var(--pink-deep);font-size:26px;line-height:1;font-weight:700;padding:0 0 3px;cursor:pointer}
 body.lb-open{overflow:hidden}
+
+/* ロゴ: ふわふわ浮く+タップで桜吹雪 */
+.hero-logo,.logo{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.hero-logo{animation:logo-float 3.6s ease-in-out infinite}
+.logo{animation:logo-float2 3.6s ease-in-out infinite}
+@keyframes logo-float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-5px) rotate(1deg)}}
+@keyframes logo-float2{0%,100%{transform:translateY(0) rotate(-.6deg)}50%{transform:translateY(-6px) rotate(.6deg)}}
+.storm-petal{position:fixed;z-index:9998;pointer-events:none;background-size:contain;background-repeat:no-repeat;background-position:center;
+  filter:saturate(.7) drop-shadow(0 0 3px rgba(228,134,174,.55));opacity:0;animation:storm-fly ease-in forwards}
+@keyframes storm-fly{
+  0%{transform:translate(var(--x0),var(--y0)) rotate(0);opacity:0}
+  10%{opacity:1}
+  80%{opacity:1}
+  100%{transform:translate(calc(var(--x0) + var(--dx)),calc(var(--y0) + var(--dy))) rotate(var(--rot));opacity:0}}
+@media (prefers-reduced-motion:reduce){.hero-logo,.logo{animation:none}.storm-petal{display:none}}

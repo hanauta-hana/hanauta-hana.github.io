@@ -273,3 +273,25 @@ bindForm('#form-contact','#ct-status','#ct-len',T.contacts,1000,function(f){
     if(t.id==='outfit-img'||(t.closest&&t.closest('.gal-slide'))){ if(t.classList.contains('swap')||!t.getAttribute('src'))return; open(t.getAttribute('src'),t.alt) }
   });
 })();
+
+/* ---------- ロゴをタップで桜吹雪 ---------- */
+(function(){
+  var busy=false;
+  function storm(ev){
+    if(busy)return; busy=true; setTimeout(function(){busy=false},1800);
+    var W=window.innerWidth,H=window.innerHeight,n=W<600?46:70;
+    for(var i=0;i<n;i++){
+      var d=document.createElement('div'); d.className='storm-petal';
+      var s=12+Math.random()*16, x0=W*(0.25+Math.random()*0.9), y0=-30-Math.random()*H*0.35,
+          dx=-(W*(0.5+Math.random()*0.9)), dy=H*(0.85+Math.random()*0.5), dur=2.2+Math.random()*2.2, del=Math.random()*0.9;
+      d.style.cssText='left:0;top:0;width:'+s+'px;height:'+s+'px;--x0:'+x0.toFixed(0)+'px;--y0:'+y0.toFixed(0)+'px;--dx:'+dx.toFixed(0)+'px;--dy:'+dy.toFixed(0)+'px;--rot:'+Math.round(Math.random()*900-300)+'deg;'+
+        'animation-duration:'+dur.toFixed(2)+'s;animation-delay:'+del.toFixed(2)+'s;background-image:url(img/petal/p'+Math.floor(Math.random()*8)+'.png)';
+      document.body.appendChild(d);
+      (function(el,t){setTimeout(function(){el.remove()},t)})(d,(dur+del)*1000+100);
+    }
+  }
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  document.addEventListener('click',function(e){
+    var t=e.target; if(t.classList&&(t.classList.contains('hero-logo')||t.classList.contains('logo')))storm(e);
+  });
+})();
