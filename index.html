@@ -22,7 +22,7 @@
 <meta property="og:description" content="毎日17:30と22:00に雑談配信。おみくじ・スタンプカードもあるよ🌸">
 <meta property="og:image" content="img/icon-512.png">
 <meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="style.css?v=202611270408">
+<link rel="stylesheet" href="style.css?v=202611270415">
 </head>
 <body>
 <div class="petals" id="petals" aria-hidden="true"></div>
@@ -75,12 +75,12 @@
   </div>
 
   <div class="card" id="gallery-card">
-    <h2 class="h"><span>🎮</span>配信のひとこま</h2>
+    <h2 class="h"><span><img class="ei" src="img/ico-game.png" alt=""></span>配信のひとこま</h2>
     <div class="strip" id="gallery"></div>
   </div>
 
   <div class="card">
-    <h2 class="h"><span>🔗</span>リンク</h2>
+    <h2 class="h"><span><img class="ei" src="img/ico-heart.png" alt=""></span>リンク</h2>
     <ul class="links" id="links"></ul>
   </div>
 </section>
@@ -90,8 +90,8 @@
   <div class="seg" role="tablist" aria-label="あそぶメニュー">
     <button class="seg-btn on" data-seg="omikuji" role="tab"><img class="ei" src="img/ico-heart.png" alt=""> おみくじ</button>
     <button class="seg-btn" data-seg="stamp" role="tab"><img class="ei" src="img/ico-sakura.png" alt=""> スタンプ</button>
-    <button class="seg-btn" data-seg="msg" role="tab">💬 メッセージ</button>
-    <button class="seg-btn" data-seg="contact" role="tab">✉️ 連絡</button>
+    <button class="seg-btn" data-seg="msg" role="tab"><img class="ei" src="img/ico-bubble.png" alt=""> メッセージ</button>
+    <button class="seg-btn" data-seg="contact" role="tab"><img class="ei" src="img/ico-mail.png" alt=""> 連絡</button>
   </div>
 
   <!-- おみくじ -->
@@ -126,7 +126,7 @@
 
   <!-- 匿名メッセージ -->
   <div class="card seg-body" id="seg-msg">
-    <h2 class="h"><span>💬</span>匿名メッセージ</h2>
+    <h2 class="h"><span><img class="ei" src="img/ico-bubble.png" alt=""></span>匿名メッセージ</h2>
     <p class="note">お名前なしで、はなにメッセージを送れます。配信で読ませていただくことがあります。</p>
     <form class="form" id="form-msg">
       <label>メッセージ <small id="msg-len">0/300</small>
@@ -134,14 +134,14 @@
       </label>
       <label class="check"><input type="checkbox" name="read_ok" checked> 配信で読まれてもOK</label>
       <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="btn big" type="submit">💬 そうしんする</button>
+      <button class="btn big" type="submit"><img class="ei" src="img/ico-bubble.png" alt=""> そうしんする</button>
       <p class="form-status" id="msg-status" role="status"></p>
     </form>
   </div>
 
   <!-- お問い合わせ -->
   <div class="card seg-body" id="seg-contact">
-    <h2 class="h"><span>✉️</span>お問い合わせ</h2>
+    <h2 class="h"><span><img class="ei" src="img/ico-mail.png" alt=""></span>お問い合わせ</h2>
     <p class="note">お仕事・コラボなどのご連絡はこちらから。返信が必要な場合は連絡先をご記入ください。</p>
     <form class="form" id="form-contact">
       <label>お名前
@@ -161,7 +161,7 @@
         <textarea name="body" rows="6" maxlength="1000" required></textarea>
       </label>
       <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="btn big" type="submit">✉️ そうしんする</button>
+      <button class="btn big" type="submit"><img class="ei" src="img/ico-mail.png" alt=""> そうしんする</button>
       <p class="form-status" id="ct-status" role="status"></p>
     </form>
   </div>
@@ -179,9 +179,9 @@
   <button class="tab" data-page="play"><i><b class="ti" style="background-image:url(img/ico-sakura.png)"></b></i><span>あそぶ</span></button>
 </nav>
 
-<script src="config.js?v=202611270408"></script>
-<script src="gate.js?v=202611270408"></script>
-<script src="api.js?v=202611270408"></script>
-<script src="app.js?v=202611270408"></script>
+<script src="config.js?v=202611270415"></script>
+<script src="gate.js?v=202611270415"></script>
+<script src="api.js?v=202611270415"></script>
+<script src="app.js?v=202611270415"></script>
 </body>
 </html>
