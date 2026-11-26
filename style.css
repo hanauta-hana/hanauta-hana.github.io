@@ -194,3 +194,6 @@ main{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:10px 14px
   0%{transform:translateX(calc(var(--sw)*-1)) rotate(var(--r0)) rotateY(0deg)}
   50%{transform:translateX(0) rotate(calc(var(--r0) + 70deg)) rotateY(160deg)}
   100%{transform:translateX(var(--sw)) rotate(calc(var(--r0) + 150deg)) rotateY(320deg)}}
+
+.ei{display:inline-block;width:1.2em;height:1.2em;vertical-align:-.25em;object-fit:contain}
+.h span .ei{width:1.4em;height:1.4em;vertical-align:-.35em}
