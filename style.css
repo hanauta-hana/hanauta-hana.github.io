@@ -27,9 +27,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 
 /* ---- 桜の花びら ---- */
 .petals{position:fixed;inset:-140px;pointer-events:none;z-index:0;mix-blend-mode:multiply;
-  background:url(img/petals.png) 0 0/300px 300px;opacity:.85;
+  background:url(img/petals.png) 0 0/300px 300px;opacity:.5;
   animation:petal-fall-a 75s linear infinite,petal-sway-a 9s ease-in-out infinite alternate}
-.petals.b{background-size:200px 200px;opacity:.6;transform-origin:50% 50%;
+.petals.b{background-size:200px 200px;opacity:.35;transform-origin:50% 50%;
   animation:petal-fall-b 52s linear infinite,petal-sway-b 13s ease-in-out infinite alternate}
 @keyframes petal-fall-a{to{background-position:-100px 600px}}
 @keyframes petal-fall-b{to{background-position:80px 800px}}
