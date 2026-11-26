@@ -93,19 +93,18 @@ function renderProfile(S){
 function renderOutfits(S){
   var list=(S.outfits||[]).filter(function(o){return safeSrc(o.src)});
   var img=$('#outfit-img'), tabs=$('#outfit-tabs'), stage=$('.outfit-stage');
-  $$('.ob-arrow,.ob-dots',stage).forEach(function(n){n.remove()});
+  var oc=$('#outfit-ctl'); if(oc)oc.remove();
   if(!list.length){img.removeAttribute('src');tabs.innerHTML='';return}
   var cur=0, busy=null;
   tabs.innerHTML=list.map(function(o,i){return '<button class="chip" data-i="'+i+'" role="tab">'+esc(o.label)+'</button>'}).join('');
   var chips=$$('.chip',tabs), dots=null;
   if(list.length>1){
-    ['prev','next'].forEach(function(d){
-      var b=document.createElement('button');b.type='button';b.className='ob-arrow '+d;
-      b.setAttribute('aria-label',d==='prev'?'前の衣装':'次の衣装');b.textContent=d==='prev'?'‹':'›';
-      b.addEventListener('click',function(){go(cur+(d==='prev'?-1:1))});stage.appendChild(b);
-    });
-    dots=document.createElement('div');dots.className='ob-dots';
-    dots.innerHTML=list.map(function(){return '<i></i>'}).join('');stage.appendChild(dots);
+    var ctl=document.createElement('div');ctl.id='outfit-ctl';ctl.className='ob-ctl';
+    ctl.innerHTML='<button type="button" class="ob-arrow prev" aria-label="前の衣装">‹</button><div class="ob-dots">'+list.map(function(){return '<i></i>'}).join('')+'</div><button type="button" class="ob-arrow next" aria-label="次の衣装">›</button>';
+    stage.parentNode.insertBefore(ctl,stage.nextSibling);
+    $('.prev',ctl).addEventListener('click',function(){go(cur-1)});
+    $('.next',ctl).addEventListener('click',function(){go(cur+1)});
+    dots=ctl.querySelector('.ob-dots');
   }
   function mark(){
     chips.forEach(function(x,i){x.classList.toggle('on',i===cur)});
@@ -139,7 +138,7 @@ function renderGallery(S){
   $('#gallery-card').hidden=!list.length;
   var box=$('#gallery'); box.className='gal';
   box.innerHTML='<div class="gal-track">'+list.map(function(g){return '<div class="gal-slide"><img src="'+safeSrc(g.src)+'" alt="'+esc(g.caption||'配信の画面')+'" loading="lazy" decoding="async"></div>'}).join('')+'</div>'+
-    (list.length>1?'<button type="button" class="ob-arrow prev" aria-label="前の写真">‹</button><button type="button" class="ob-arrow next" aria-label="次の写真">›</button><div class="ob-dots">'+list.map(function(){return '<i></i>'}).join('')+'</div>':'');
+    (list.length>1?'<div class="ob-ctl"><button type="button" class="ob-arrow prev" aria-label="前の写真">‹</button><div class="ob-dots">'+list.map(function(){return '<i></i>'}).join('')+'</div><button type="button" class="ob-arrow next" aria-label="次の写真">›</button></div>':'');
   if(list.length<2)return;
   var track=$('.gal-track',box), dots=$$('.ob-dots i',box);
   function idx(){return Math.round(track.scrollLeft/track.clientWidth)}

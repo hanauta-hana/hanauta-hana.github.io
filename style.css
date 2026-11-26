@@ -238,3 +238,9 @@ body.on-top .top{display:none}
 .gal-slide{flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always}
 .gal-slide img{width:100%;aspect-ratio:900/413;object-fit:cover;border-radius:14px;border:2px solid #fff}
 .gal .ob-dots{bottom:8px}
+
+/* 矢印・ドットは画像の下に置く(絵に被らない) */
+.ob-ctl{display:flex;align-items:center;justify-content:center;gap:16px;margin:10px 0 2px}
+.ob-ctl .ob-arrow{position:static;transform:none;width:36px;height:36px;font-size:24px;flex:0 0 auto}
+.ob-ctl .ob-arrow:active{transform:scale(.92)}
+.ob-ctl .ob-dots{position:static}
