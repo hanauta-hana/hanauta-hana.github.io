@@ -17,13 +17,13 @@ var store = {
 (function(){
   var box=$('#petals'); if(!box) return;
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  var N=window.innerWidth<600?22:32, W=window.innerWidth;
+  var N=window.innerWidth<600?26:38, W=window.innerWidth;
   for(var k=0;k<N;k++){
     var p=document.createElement('div'); p.className='petal';
-    var size=9+Math.random()*9, x0=Math.random()*W, drift=(Math.random()*2-0.6)*90;
+    var size=13+Math.random()*10, x0=Math.random()*W, drift=(Math.random()*2-0.6)*90;
     p.style.width=size+'px'; p.style.height=size+'px';
     p.style.setProperty('--x0',x0+'px'); p.style.setProperty('--x1',(x0+drift)+'px');
-    p.style.opacity=(0.8+Math.random()*0.2).toFixed(2);
+    p.style.opacity=(0.9+Math.random()*0.1).toFixed(2);
     p.style.animationDuration=(13+Math.random()*13)+'s';
     p.style.animationDelay=(-Math.random()*26)+'s';
     var i=document.createElement('i');
