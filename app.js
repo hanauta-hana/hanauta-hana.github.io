@@ -129,10 +129,14 @@ $$('.seg-btn').forEach(function(b){
 
 /* ---------- スタンプカード ---------- */
 var STAMPS=10;
+var STAMP_IMG=['ico-sakura.png','ribbon.png','ico-home.png','ico-sakura.png','ribbon.png','ico-home.png','ico-sakura.png','ribbon.png','ico-home.png','chibi.png'];
 function renderStamps(){
   var st=store.get('hana_stamps',{count:0,days:[]});
   var h='';
-  for(var i=0;i<STAMPS;i++) h+='<div class="stamp'+(i<st.count?' on':'')+'">'+(i<st.count?'<img src="img/ico-sakura.png" alt="" style="transform:rotate('+[-12,8,-5,14,-9,6,-15,10,-3,12][i%10]+'deg)">':(i+1))+'</div>';
+  for(var i=0;i<STAMPS;i++){
+    var on=i<st.count, goal=(i===STAMPS-1);
+    h+='<div class="stamp'+(on?' on':'')+(goal?' goal':'')+'">'+(on?'<img src="img/'+STAMP_IMG[i]+'" alt="" style="transform:rotate('+(goal?0:[-12,8,-5,14,-9,6,-15,10,-3][i%9])+'deg)">':(goal?'<span class="gq">♡</span>':(i+1)))+'</div>';
+  }
   $('#stamp-card').innerHTML=h;
   $('#stamp-count').textContent=st.count>=STAMPS?'スタンプ '+STAMPS+'/'+STAMPS+' コンプリート！':'いま '+st.count+' / '+STAMPS+' こ';
   $('#stamp-reward').hidden=st.count<STAMPS;
