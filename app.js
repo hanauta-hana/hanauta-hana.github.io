@@ -271,7 +271,7 @@ bindForm('#form-contact','#ct-status','#ct-len',T.contacts,1000,function(f){
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)close()});
   document.addEventListener('click',function(e){
     var t=e.target; if(t.tagName!=='IMG')return;
-    if(t.id==='outfit-img'||(t.closest&&t.closest('.gal-slide'))){ if(t.classList.contains('swap')||!t.getAttribute('src'))return; open(t.getAttribute('src'),t.alt) }
+    if(t.id==='outfit-img'){ if(t.classList.contains('swap')||!t.getAttribute('src'))return; open(t.getAttribute('src'),t.alt) }
   });
 })();
 
