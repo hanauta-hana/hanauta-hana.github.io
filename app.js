@@ -66,7 +66,7 @@ function renderSchedule(S){
     var slots=(ov[w]!==undefined&&ov[w]!==null)?ov[w]:sc.default;
     var inner=(slots&&slots.length)
       ? slots.map(function(s){return '<div class="slot"><span class="t">'+esc(s.time)+'</span><span class="n">'+esc(s.title)+(s.memo?' <small>'+esc(s.memo)+'</small>':'')+'</span></div>'}).join('')
-      : '<span class="off">お休みです🌙</span>';
+      : '<span class="off">お休みです <img class="moon" src="img/ico-moon.png" alt=""></span>';
     html+='<li class="'+(i===0?'today':'')+'"><div class="d"><b>'+(d.getMonth()+1)+'/'+d.getDate()+'</b><small>'+DAY[w]+'</small></div><div class="slots">'+inner+'</div></li>';
   }
   $('#week').innerHTML=html;
