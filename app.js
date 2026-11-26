@@ -257,3 +257,19 @@ bindForm('#form-contact','#ct-status','#ct-len',T.contacts,1000,function(f){
     }
   },{passive:true});
 })();
+
+/* ---------- 画像タップで拡大 ---------- */
+(function(){
+  var lb=document.createElement('div'); lb.className='lightbox'; lb.hidden=true;
+  lb.innerHTML='<button type="button" class="lb-x" aria-label="閉じる">×</button><img alt="">';
+  document.body.appendChild(lb);
+  var im=lb.querySelector('img');
+  function close(){lb.classList.remove('on');setTimeout(function(){lb.hidden=true;im.removeAttribute('src');document.body.classList.remove('lb-open')},180)}
+  function open(src,alt){im.src=src;im.alt=alt||'';lb.hidden=false;document.body.classList.add('lb-open');requestAnimationFrame(function(){lb.classList.add('on')})}
+  lb.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)close()});
+  document.addEventListener('click',function(e){
+    var t=e.target; if(t.tagName!=='IMG')return;
+    if(t.id==='outfit-img'||(t.closest&&t.closest('.gal-slide'))){ if(t.classList.contains('swap')||!t.getAttribute('src'))return; open(t.getAttribute('src'),t.alt) }
+  });
+})();
