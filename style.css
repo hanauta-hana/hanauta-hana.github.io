@@ -140,6 +140,8 @@ main{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:10px 14px
 .stamp{aspect-ratio:1;border-radius:50%;display:grid;place-items:center;font-size:22px;
   background:var(--sakura);color:#fff;font-weight:700;border:2px solid #fff;box-shadow:inset 0 0 0 2px var(--sakura)}
 .stamp.on{background:radial-gradient(circle,#fff 0,#fcd5e3 60%,var(--pink) 100%);animation:stampin .5s}
+/* スタンプ画像 */
+.stamp img{width:82%;height:auto;display:block}
 @keyframes stampin{0%{transform:scale(2.2) rotate(-20deg);opacity:0}100%{transform:none;opacity:1}}
 .stamp-count{text-align:center;font-weight:700;margin:10px 0 0;color:var(--pink-deep)}
 .reward{margin-top:12px;text-align:center;background:var(--mint);border-radius:16px;padding:12px;font-weight:700}
