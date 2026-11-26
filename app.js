@@ -13,6 +13,29 @@ var store = {
   set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 };
 
+/* ---------- 桜の花びら(1枚ずつ別々に舞う) ---------- */
+(function(){
+  var box=$('#petals'); if(!box) return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var N=window.innerWidth<600?14:22, W=window.innerWidth;
+  for(var k=0;k<N;k++){
+    var p=document.createElement('div'); p.className='petal';
+    var size=14+Math.random()*16, x0=Math.random()*W, drift=(Math.random()*2-0.6)*90;
+    p.style.width=size+'px'; p.style.height=size+'px';
+    p.style.setProperty('--x0',x0+'px'); p.style.setProperty('--x1',(x0+drift)+'px');
+    p.style.opacity=(0.55+Math.random()*0.4).toFixed(2);
+    p.style.animationDuration=(13+Math.random()*13)+'s';
+    p.style.animationDelay=(-Math.random()*26)+'s';
+    var i=document.createElement('i');
+    i.style.backgroundImage='url(img/petal/p'+Math.floor(Math.random()*8)+'.png)';
+    i.style.setProperty('--sw',(14+Math.random()*26)+'px');
+    i.style.setProperty('--r0',(Math.random()*360)+'deg');
+    i.style.animationDuration=(2.6+Math.random()*3)+'s';
+    i.style.animationDelay=(-Math.random()*5)+'s';
+    p.appendChild(i); box.appendChild(p);
+  }
+})();
+
 /* ---------- タブ切り替え(URLのハッシュ対応) ---------- */
 function showPage(name,push){
   if(!$('#page-'+name)) name='top';
