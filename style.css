@@ -318,3 +318,10 @@ body.lb-open{overflow:hidden}
 @keyframes hero-shine{0%{transform:translateX(-120%)}30%,100%{transform:translateX(120%)}}
 .hero-logo{z-index:2}
 @media (prefers-reduced-motion:reduce){.outfit-stage img,.outfit-stage::before,.hero-img>img:first-child,.hero-img::after,.hero-img::before{animation:none}}
+
+/* 見出し: ぷっくりした文字(はなさんのヘッダー文字の雰囲気) */
+.h,.catch{color:#e0609a;-webkit-text-stroke:3px #fff;paint-order:stroke fill;
+  text-shadow:0 3px 0 rgba(224,96,154,.28),0 5px 8px rgba(228,134,174,.3);letter-spacing:.03em}
+.h{font-size:20px}
+.catch{font-size:20px}
+.h span{-webkit-text-stroke:0;text-shadow:none}
