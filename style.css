@@ -230,3 +230,11 @@ body.on-top .top{display:none}
   0%{transform:translate(0,0) scale(.3) rotate(0);opacity:1}
   70%{opacity:1}
   100%{transform:translate(var(--dx),calc(var(--dy) + 26px)) scale(1) rotate(var(--rot));opacity:0}}
+
+/* 配信のひとこま: 1枚ずつ横スライド */
+.gal{position:relative}
+.gal-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;border-radius:14px}
+.gal-track::-webkit-scrollbar{display:none}
+.gal-slide{flex:0 0 100%;scroll-snap-align:center;scroll-snap-stop:always}
+.gal-slide img{width:100%;aspect-ratio:900/413;object-fit:cover;border-radius:14px;border:2px solid #fff}
+.gal .ob-dots{bottom:8px}

@@ -137,7 +137,18 @@ function renderOutfits(S){
 function renderGallery(S){
   var list=(S.gallery||[]).filter(function(g){return safeSrc(g.src)});
   $('#gallery-card').hidden=!list.length;
-  $('#gallery').innerHTML=list.map(function(g){return '<img src="'+safeSrc(g.src)+'" alt="'+esc(g.caption||'配信の画面')+'" loading="lazy">'}).join('');
+  var box=$('#gallery'); box.className='gal';
+  box.innerHTML='<div class="gal-track">'+list.map(function(g){return '<div class="gal-slide"><img src="'+safeSrc(g.src)+'" alt="'+esc(g.caption||'配信の画面')+'" loading="lazy" decoding="async"></div>'}).join('')+'</div>'+
+    (list.length>1?'<button type="button" class="ob-arrow prev" aria-label="前の写真">‹</button><button type="button" class="ob-arrow next" aria-label="次の写真">›</button><div class="ob-dots">'+list.map(function(){return '<i></i>'}).join('')+'</div>':'');
+  if(list.length<2)return;
+  var track=$('.gal-track',box), dots=$$('.ob-dots i',box);
+  function idx(){return Math.round(track.scrollLeft/track.clientWidth)}
+  function mark(){var c=idx();dots.forEach(function(d,i){d.classList.toggle('on',i===c)})}
+  function go(i){i=(i+list.length)%list.length;track.scrollTo({left:i*track.clientWidth,behavior:'smooth'})}
+  track.addEventListener('scroll',function(){requestAnimationFrame(mark)},{passive:true});
+  $('.prev',box).addEventListener('click',function(){go(idx()-1)});
+  $('.next',box).addEventListener('click',function(){go(idx()+1)});
+  mark();
 }
 function renderLinks(){
   $('#links').innerHTML=(C.links||[]).map(function(l){
