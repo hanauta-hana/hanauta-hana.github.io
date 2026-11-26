@@ -271,3 +271,9 @@ body.lb-open{overflow:hidden}
   80%{opacity:1}
   100%{transform:translate(calc(var(--x0) + var(--dx)),calc(var(--y0) + var(--dy))) rotate(var(--rot));opacity:0}}
 @media (prefers-reduced-motion:reduce){.hero-logo,.logo{animation:none}.storm-petal{display:none}}
+
+/* 「タップで拡大」ヒント */
+.gal-slide{position:relative}
+.outfit-stage::after,.gal-slide::after{content:"タップで拡大";position:absolute;right:10px;bottom:10px;pointer-events:none;
+  font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--pink-deep);background:rgba(255,255,255,.78);
+  border:1.5px solid #fff;border-radius:999px;padding:3px 10px;box-shadow:0 2px 8px rgba(228,134,174,.3)}
