@@ -219,3 +219,22 @@ bindForm('#form-contact','#ct-status','#ct-len',T.contacts,1000,function(f){
   return {name:f.name.value.slice(0,50),reply_to:f.reply_to.value.slice(0,100),kind:f.kind.value,body:f.body.value.slice(0,1000)};
 });
 })();
+
+/* ---------- タップすると桜がぱっと広がる ---------- */
+(function(){
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  var last=0;
+  document.addEventListener('pointerdown',function(e){
+    var now=Date.now(); if(now-last<120)return; last=now;
+    var n=9;
+    for(var i=0;i<n;i++){
+      var d=document.createElement('div'); d.className='tap-petal';
+      var a=(Math.PI*2*i/n)+Math.random()*.6, r=34+Math.random()*46, s=12+Math.random()*10;
+      d.style.cssText='left:'+e.clientX+'px;top:'+e.clientY+'px;width:'+s+'px;height:'+s+'px;'+
+        '--dx:'+(Math.cos(a)*r).toFixed(1)+'px;--dy:'+(Math.sin(a)*r-14).toFixed(1)+'px;--rot:'+Math.round(Math.random()*540-270)+'deg;'+
+        'background-image:url(img/petal/p'+Math.floor(Math.random()*8)+'.png)';
+      document.body.appendChild(d);
+      (function(el){setTimeout(function(){el.remove()},900)})(d);
+    }
+  },{passive:true});
+})();

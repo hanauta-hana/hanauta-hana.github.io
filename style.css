@@ -222,3 +222,11 @@ main{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:10px 14px
 /* トップはロゴをイラスト右上に */
 .hero-logo{position:absolute;top:2px;right:0;width:40%;height:auto;filter:drop-shadow(0 2px 6px rgba(107,40,70,.45))}
 body.on-top .top{display:none}
+
+/* タップ桜 */
+.tap-petal{position:fixed;z-index:9999;pointer-events:none;margin:-6px 0 0 -6px;background-size:contain;background-repeat:no-repeat;background-position:center;
+  filter:saturate(.7) drop-shadow(0 0 3px rgba(228,134,174,.6));animation:tap-burst .85s cubic-bezier(.2,.7,.3,1) forwards}
+@keyframes tap-burst{
+  0%{transform:translate(0,0) scale(.3) rotate(0);opacity:1}
+  70%{opacity:1}
+  100%{transform:translate(var(--dx),calc(var(--dy) + 26px)) scale(1) rotate(var(--rot));opacity:0}}
