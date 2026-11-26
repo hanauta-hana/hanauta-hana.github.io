@@ -92,17 +92,38 @@ function renderProfile(S){
 }
 function renderOutfits(S){
   var list=(S.outfits||[]).filter(function(o){return safeSrc(o.src)});
-  var img=$('#outfit-img'), tabs=$('#outfit-tabs');
+  var img=$('#outfit-img'), tabs=$('#outfit-tabs'), stage=$('.outfit-stage');
+  $$('.ob-arrow,.ob-dots',stage).forEach(function(n){n.remove()});
   if(!list.length){img.removeAttribute('src');tabs.innerHTML='';return}
-  img.src=safeSrc(list[0].src);
-  tabs.innerHTML=list.map(function(o,i){return '<button class="chip'+(i===0?' on':'')+'" data-i="'+i+'" role="tab">'+esc(o.label)+'</button>'}).join('');
-  $$('.chip',tabs).forEach(function(b){
-    b.addEventListener('click',function(){
-      $$('.chip',tabs).forEach(function(x){x.classList.toggle('on',x===b)});
-      img.classList.add('swap');
-      setTimeout(function(){img.src=safeSrc(list[+b.dataset.i].src);img.classList.remove('swap')},180);
+  var cur=0, busy=null;
+  tabs.innerHTML=list.map(function(o,i){return '<button class="chip" data-i="'+i+'" role="tab">'+esc(o.label)+'</button>'}).join('');
+  var chips=$$('.chip',tabs), dots=null;
+  if(list.length>1){
+    ['prev','next'].forEach(function(d){
+      var b=document.createElement('button');b.type='button';b.className='ob-arrow '+d;
+      b.setAttribute('aria-label',d==='prev'?'前の衣装':'次の衣装');b.textContent=d==='prev'?'‹':'›';
+      b.addEventListener('click',function(){go(cur+(d==='prev'?-1:1))});stage.appendChild(b);
     });
-  });
+    dots=document.createElement('div');dots.className='ob-dots';
+    dots.innerHTML=list.map(function(){return '<i></i>'}).join('');stage.appendChild(dots);
+  }
+  function mark(){
+    chips.forEach(function(x,i){x.classList.toggle('on',i===cur)});
+    if(dots)$$('i',dots).forEach(function(x,i){x.classList.toggle('on',i===cur)});
+  }
+  function go(i){
+    i=(i+list.length)%list.length; if(i===cur&&img.getAttribute('src'))return;
+    cur=i; mark(); img.classList.add('swap'); clearTimeout(busy);
+    busy=setTimeout(function(){img.src=safeSrc(list[cur].src);img.classList.remove('swap')},180);
+  }
+  chips.forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.i)})});
+  var x0=null,y0=null;
+  stage.ontouchstart=function(ev){x0=ev.touches[0].clientX;y0=ev.touches[0].clientY};
+  stage.ontouchend=function(ev){
+    if(x0===null)return; var dx=ev.changedTouches[0].clientX-x0, dy=ev.changedTouches[0].clientY-y0; x0=null;
+    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.5)go(cur+(dx<0?1:-1));
+  };
+  img.src=safeSrc(list[0].src); mark();
 }
 function renderGallery(S){
   var list=(S.gallery||[]).filter(function(g){return safeSrc(g.src)});
