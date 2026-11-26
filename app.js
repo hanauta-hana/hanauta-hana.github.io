@@ -114,7 +114,11 @@ function renderOutfits(S){
   function go(i){
     i=(i+list.length)%list.length; if(i===cur&&img.getAttribute('src'))return;
     cur=i; mark(); img.classList.add('swap'); clearTimeout(busy);
-    busy=setTimeout(function(){img.src=safeSrc(list[cur].src);img.classList.remove('swap')},180);
+    var want=safeSrc(list[cur].src), t0=Date.now(), pre=new Image();
+    function apply(){ if(cur!==i)return; if(img.getAttribute('src')!==want)img.src=want; if(img.complete)img.classList.remove('swap'); }
+    img.onload=function(){ if(safeSrc(list[cur].src)===want)img.classList.remove('swap') };
+    pre.onload=pre.onerror=function(){ busy=setTimeout(apply,Math.max(0,180-(Date.now()-t0))) };
+    pre.src=want;
   }
   chips.forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.i)})});
   var x0=null,y0=null;
@@ -123,7 +127,12 @@ function renderOutfits(S){
     if(x0===null)return; var dx=ev.changedTouches[0].clientX-x0, dy=ev.changedTouches[0].clientY-y0; x0=null;
     if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)*1.5)go(cur+(dx<0?1:-1));
   };
-  img.src=safeSrc(list[0].src); mark();
+  list.forEach(function(o){var p=new Image();p.src=safeSrc(o.src)});   // 先に全部読み込んでおく
+  var first=safeSrc(list[0].src);
+  img.onload=function(){img.classList.remove('swap')};
+  if(img.getAttribute('src')!==first){img.classList.add('swap');img.src=first}
+  else if(img.complete)img.classList.remove('swap');
+  mark();
 }
 function renderGallery(S){
   var list=(S.gallery||[]).filter(function(g){return safeSrc(g.src)});
