@@ -277,3 +277,44 @@ body.lb-open{overflow:hidden}
 .outfit-stage::after,.gal-slide::after{content:"タップで拡大";position:absolute;right:10px;bottom:10px;pointer-events:none;
   font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--pink-deep);background:rgba(255,255,255,.78);
   border:1.5px solid #fff;border-radius:999px;padding:3px 10px;box-shadow:0 2px 8px rgba(228,134,174,.3)}
+
+/* ===== 立ち絵をきれいに見せる ===== */
+.outfit-stage{--g1:#fff;--g2:#ffd3e6;--g3:#f6a9cb;position:relative;
+  background:
+    radial-gradient(circle at 18% 16%,rgba(255,255,255,.85) 0 7px,transparent 8px),
+    radial-gradient(circle at 82% 22%,rgba(255,255,255,.7) 0 11px,transparent 12px),
+    radial-gradient(circle at 70% 10%,rgba(255,255,255,.8) 0 5px,transparent 6px),
+    radial-gradient(circle at 10% 48%,rgba(255,255,255,.6) 0 9px,transparent 10px),
+    radial-gradient(circle at 92% 58%,rgba(255,255,255,.65) 0 6px,transparent 7px),
+    radial-gradient(ellipse 70% 55% at 50% 48%,var(--g1) 0,transparent 70%),
+    linear-gradient(180deg,var(--g2) 0,var(--g3) 100%)}
+.outfit-stage[data-o="1"]{--g1:#fff;--g2:#ffe3ef;--g3:#ffc2d9}
+.outfit-stage[data-o="2"]{--g1:#fff;--g2:#eadcf7;--g3:#c9b0e6}
+.outfit-stage::before{content:"";position:absolute;left:50%;bottom:6px;width:58%;height:22px;transform:translateX(-50%);
+  background:radial-gradient(ellipse at center,rgba(120,50,85,.32) 0,rgba(120,50,85,.12) 55%,transparent 72%);
+  border-radius:50%;animation:stage-shadow 4.2s ease-in-out infinite;pointer-events:none}
+.outfit-stage img{filter:drop-shadow(0 0 1.5px rgba(255,255,255,.95)) drop-shadow(0 6px 10px rgba(150,60,100,.22));
+  animation:stage-float 4.2s ease-in-out infinite;transition:opacity .25s}
+@keyframes stage-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes stage-shadow{0%,100%{transform:translateX(-50%) scale(1);opacity:1}50%{transform:translateX(-50%) scale(.86);opacity:.7}}
+
+/* ===== ホームの立ち絵: ゆっくりズーム + きらめき ===== */
+.hero-img{overflow:hidden}
+.hero-img>img:first-child{transform-origin:50% 12%;animation:hero-zoom 14s ease-in-out infinite alternate}
+@keyframes hero-zoom{from{transform:scale(1)}to{transform:scale(1.06)}}
+.hero-img::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 22% 30%,rgba(255,255,255,.95) 0 2px,transparent 3px),
+    radial-gradient(circle at 68% 18%,rgba(255,255,255,.9) 0 2.5px,transparent 3.5px),
+    radial-gradient(circle at 84% 52%,rgba(255,255,255,.9) 0 2px,transparent 3px),
+    radial-gradient(circle at 36% 66%,rgba(255,255,255,.85) 0 2.5px,transparent 3.5px),
+    radial-gradient(circle at 56% 40%,rgba(255,255,255,.8) 0 2px,transparent 3px),
+    radial-gradient(circle at 12% 78%,rgba(255,255,255,.85) 0 2px,transparent 3px);
+  animation:twinkle 3.2s ease-in-out infinite}
+.hero-img::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.32) 50%,transparent 65%);
+  transform:translateX(-120%);animation:hero-shine 7s ease-in-out infinite 1.5s}
+@keyframes twinkle{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes hero-shine{0%{transform:translateX(-120%)}30%,100%{transform:translateX(120%)}}
+.hero-logo{z-index:2}
+@media (prefers-reduced-motion:reduce){.outfit-stage img,.outfit-stage::before,.hero-img>img:first-child,.hero-img::after,.hero-img::before{animation:none}}

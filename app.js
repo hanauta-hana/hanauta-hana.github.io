@@ -107,6 +107,7 @@ function renderOutfits(S){
     dots=ctl.querySelector('.ob-dots');
   }
   function mark(){
+    stage.setAttribute('data-o',cur%3);
     chips.forEach(function(x,i){x.classList.toggle('on',i===cur)});
     if(dots)$$('i',dots).forEach(function(x,i){x.classList.toggle('on',i===cur)});
   }
