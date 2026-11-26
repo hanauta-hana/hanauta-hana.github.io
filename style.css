@@ -26,7 +26,8 @@ a{color:inherit}
 button{font:inherit;color:inherit;cursor:pointer}
 
 /* ---- 桜の花びら ---- */
-.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0;background:url(img/petals.png) 0 0/340px 340px;mix-blend-mode:multiply;opacity:.85;animation:petal-drift 90s linear infinite}
+@keyframes petal-drift{to{background-position:-340px 680px}}
 .petal{position:absolute;top:-30px;width:14px;height:14px;opacity:.75;
   background:radial-gradient(circle at 30% 30%,#fff 0,#fcd5e3 45%,#f6a8c8 100%);
   border-radius:80% 0 80% 0;animation:fall linear infinite}
@@ -34,7 +35,7 @@ button{font:inherit;color:inherit;cursor:pointer}
   0%{transform:translate3d(0,-30px,0) rotate(0)}
   100%{transform:translate3d(var(--dx,60px),110vh,0) rotate(540deg)}
 }
-@media (prefers-reduced-motion:reduce){.petal{display:none}}
+@media (prefers-reduced-motion:reduce){.petals{animation:none}}
 
 /* ---- ヘッダー ---- */
 .top{position:relative;z-index:1;text-align:center;padding:18px 16px 4px}

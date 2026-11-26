@@ -13,20 +13,6 @@ var store = {
   set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 };
 
-/* ---------- 桜の花びら ---------- */
-(function(){
-  var box=$('#petals'); if(!box) return;
-  for(var i=0;i<14;i++){
-    var p=document.createElement('i'); p.className='petal';
-    p.style.left=(Math.random()*100)+'%';
-    p.style.width=p.style.height=(9+Math.random()*10)+'px';
-    p.style.animationDuration=(9+Math.random()*9)+'s';
-    p.style.animationDelay=(-Math.random()*14)+'s';
-    p.style.setProperty('--dx',(Math.random()*120-30)+'px');
-    box.appendChild(p);
-  }
-})();
-
 /* ---------- タブ切り替え(URLのハッシュ対応) ---------- */
 function showPage(name,push){
   if(!$('#page-'+name)) name='top';
