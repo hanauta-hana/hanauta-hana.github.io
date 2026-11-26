@@ -26,10 +26,10 @@ a{color:inherit}
 button{font:inherit;color:inherit;cursor:pointer}
 
 /* ---- 桜の花びら ---- */
-.petals{position:fixed;inset:-140px;pointer-events:none;z-index:0;mix-blend-mode:multiply;
-  background:url(img/petals.png) 0 0/190px 190px;opacity:.5;
+.petals{position:fixed;inset:-140px;pointer-events:none;z-index:0;mix-blend-mode:screen;filter:invert(1) grayscale(1) brightness(1.7);
+  background:url(img/petals.png) 0 0/190px 190px;opacity:1;
   animation:petal-fall-a 75s linear infinite,petal-sway-a 9s ease-in-out infinite alternate}
-.petals.b{background-size:130px 130px;opacity:.35;transform-origin:50% 50%;
+.petals.b{background-size:130px 130px;opacity:.7;transform-origin:50% 50%;
   animation:petal-fall-b 52s linear infinite,petal-sway-b 13s ease-in-out infinite alternate}
 @keyframes petal-fall-a{to{background-position:-60px 380px}}
 @keyframes petal-fall-b{to{background-position:50px 520px}}
