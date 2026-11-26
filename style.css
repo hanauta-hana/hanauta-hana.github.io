@@ -179,10 +179,10 @@ main{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:10px 14px
 .box-ribbon .rb{width:96px;height:71px}
 
 /* ---- 桜の花びら(1枚ずつ舞う) ---- */
-.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.petals{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:5}
 .petal{position:absolute;top:-40px;left:0;will-change:transform;animation:petal-fall linear infinite}
 .petal i{display:block;width:100%;height:100%;background-size:contain;background-repeat:no-repeat;background-position:center;
-  filter:saturate(.55) brightness(1.12);will-change:transform;animation:petal-sway ease-in-out infinite alternate}
+  filter:saturate(.3) brightness(1.15) drop-shadow(0 0 3px rgba(228,134,174,.35));will-change:transform;animation:petal-sway ease-in-out infinite alternate}
 @keyframes petal-fall{from{transform:translate3d(var(--x0),-40px,0)}to{transform:translate3d(var(--x1),calc(100vh + 60px),0)}}
 @keyframes petal-sway{
   0%{transform:translateX(calc(var(--sw)*-1)) rotate(var(--r0)) rotateY(0deg)}
