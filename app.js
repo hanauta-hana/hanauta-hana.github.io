@@ -46,6 +46,12 @@ function showPage(name,push){
 }
 $$('.tab').forEach(function(t){t.addEventListener('click',function(){showPage(t.dataset.page)})});
 showPage((location.hash||'#top').slice(1),false);
+// パスワードで入った直後は、トップの一番上から見せる
+window.addEventListener('hana-unlock',function(){
+  showPage('top');
+  function up(){window.scrollTo(0,0);document.documentElement.scrollTop=0;document.body.scrollTop=0}
+  up();setTimeout(up,60);setTimeout(up,300);
+});
 window.scrollTo(0,0);
 
 /* ---------- 日本時間の「今」 ---------- */
