@@ -376,15 +376,14 @@ body{padding-bottom:calc(var(--tabbar-h) + 48px)}
   padding:10px 12px calc(14px + env(safe-area-inset-bottom));box-shadow:0 -4px 16px rgba(228,134,174,.2)}
 body{padding-bottom:calc(var(--tabbar-h) + 24px + env(safe-area-inset-bottom))}
 
-/* 下メニュー → 上に貼り付くメニュー(ホーム画面アプリで位置がずれないように) */
-.tabbar{position:sticky;top:0;left:auto;right:auto;bottom:auto;z-index:20;margin:0;
-  padding:calc(6px + env(safe-area-inset-top)) 10px 8px;gap:6px;border-radius:0 0 22px 22px;
-  border:0;border-bottom:2px solid #fff;background:rgba(255,255,255,.94);
-  box-shadow:0 4px 16px rgba(228,134,174,.22)}
-.tab{padding:5px 0 4px}
+/* 下メニュー(あんてHPと同じ作り): 高さを明示した固定表示 */
+:root{--sab:env(safe-area-inset-bottom,0px);--sat:env(safe-area-inset-top,0px);--tabbar-h:66px}
+.tabbar{position:fixed;left:0;right:0;bottom:0;top:auto;z-index:50;display:flex;align-items:center;gap:6px;
+  height:calc(var(--tabbar-h) + var(--sab));padding:0 10px var(--sab);margin:0;border:0;border-top:2px solid #fff;border-radius:0;
+  background:rgba(255,255,255,.96);box-shadow:0 -4px 16px rgba(228,134,174,.22)}
+.tab{padding:4px 0 3px}
 .tab i{transform:scale(.82);margin:-3px 0}
-body{padding-bottom:28px}
-:root{--tabbar-h:0px}
+body{padding-top:var(--sat);padding-bottom:calc(var(--tabbar-h) + var(--sab) + 20px);overflow-x:clip}
 
 /* スマホで押しやすいよう、小さめのボタンを大きめに */
 .ob-arrow{width:44px;height:44px}
