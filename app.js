@@ -208,6 +208,8 @@ function renderStamps(){
   $('#stamp-card').innerHTML=h;
   $('#stamp-count').textContent=st.count>=STAMPS?'スタンプ '+STAMPS+'/'+STAMPS+' コンプリート！':'いま '+st.count+' / '+STAMPS+' こ';
   $('#stamp-reward').hidden=st.count<STAMPS;
+  var ss=document.getElementById('stamp-share');
+  if(ss) ss.href='https://twitter.com/intent/tweet?text='+encodeURIComponent('はなのスタンプカードを'+STAMPS+'個コンプリートしました🌸\n'+(location.origin+location.pathname));
 }
 renderStamps();
 
@@ -216,7 +218,7 @@ renderStamps();
   var btn=$('#omikuji-btn'), res=$('#omikuji-result');
   function show(r){
     $('#o-rank').textContent=r.rank; $('#o-msg').textContent=r.msg; $('#o-item').textContent=r.item;
-    var text='今日のはなのおみくじは「'+r.rank+'」でした💗 '+location.href.split('#')[0];
+    var text='今日のはなのおみくじは「'+r.rank+'」でした💗\n'+r.msg+'\n'+r.item+'\n'+(location.origin+location.pathname);
     $('#o-share').href='https://twitter.com/intent/tweet?text='+encodeURIComponent(text);
     res.hidden=false;
   }
