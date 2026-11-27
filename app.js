@@ -305,3 +305,14 @@ window.hanaFx=(function(){var l=null;return function(){if(!l){l=document.createE
     var t=e.target; if(t.classList&&(t.classList.contains('hero-logo')||t.classList.contains('logo')||t.classList.contains('stage-logo')))storm(e);
   });
 })();
+
+// 最新版に更新(キャッシュをさけて読み込み直す)
+(function(){
+  var b=document.getElementById('refresh-btn');if(!b)return;
+  b.addEventListener('click',function(){
+    b.textContent='更新中…';b.disabled=true;
+    var go=function(){var u=new URL(location.href);u.searchParams.set('r',Date.now());location.replace(u.toString())};
+    try{if(window.caches&&caches.keys){caches.keys().then(function(k){return Promise.all(k.map(function(n){return caches.delete(n)}))}).then(go,go);return}}catch(e){}
+    go();
+  });
+})();
