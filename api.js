@@ -16,7 +16,7 @@ function rpc(name,args){
 
 // 設定の取得: 初期設定(config.js)に、保存済みの内容を重ねて返す
 function defaults(){
-  return {schedule:C.schedule,news:C.news,profile:C.profile,home:C.home,outfits:C.outfits,gallery:C.gallery};
+  return {schedule:C.schedule,news:C.news,profile:C.profile,home:C.home,outfits:C.outfits,gallery:C.gallery,omikuji:C.omikuji};
 }
 function merge(saved){
   var d=defaults(); saved=saved||{};

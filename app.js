@@ -179,7 +179,8 @@ function renderHome(S){
   }
   if(s&&hm.sub){ s.textContent=''; String(hm.sub).split('\n').forEach(function(t,i){ if(i) s.appendChild(document.createElement('br')); s.appendChild(document.createTextNode(t)); }); }
 }
-function renderAll(S){renderHome(S);renderSchedule(S);renderNews(S);renderProfile(S);renderOutfits(S);renderGallery(S);renderLinks()}
+var OMI=null;
+function renderAll(S){OMI=(S.omikuji&&S.omikuji.length)?S.omikuji:null;renderHome(S);renderSchedule(S);renderNews(S);renderProfile(S);renderOutfits(S);renderGallery(S);renderLinks()}
 
 renderAll(API.defaults());                              // まず初期設定で表示
 API.getSettings().then(renderAll).catch(function(){});  // 保存済みの内容があれば差し替え
@@ -222,7 +223,7 @@ renderStamps();
   if(saved&&saved.date===today){show(saved.result);lock();}
   btn.addEventListener('click',function(){
     if(btn.disabled) return;
-    var r=C.omikuji[Math.floor(Math.random()*C.omikuji.length)];
+    var L=OMI||C.omikuji, r=L[Math.floor(Math.random()*L.length)];
     btn.classList.add('shake');
     setTimeout(function(){
       btn.classList.remove('shake');

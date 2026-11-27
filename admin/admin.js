@@ -221,6 +221,43 @@ PANELS.home=function(body){
   card.appendChild(h('button',{class:'btn big',type:'button',text:'保存する',onclick:function(){save('home',p,this)}}));
   body.appendChild(card);
 };
+/* おみくじ */
+PANELS.omikuji=function(body){
+  var list=clone(cur.omikuji||[]);
+  var RANKS=['大吉','中吉','小吉','吉','末吉'];
+  var card=h('div',{class:'card'},h('h2',{text:'おみくじ'}),
+    h('p',{class:'note',text:'おみくじをひいたときに出る言葉です(最大20個)。ひくたびに、この中からランダムに1つ出ます。'}));
+  var box=h('div',{class:'omi-list'});
+  function draw(){
+    box.innerHTML='';
+    list.forEach(function(o,i){
+      var sel=h('select',{});
+      RANKS.forEach(function(r){var op=h('option',{value:r,text:r}); if(r===o.rank) op.selected=true; sel.appendChild(op)});
+      sel.addEventListener('change',function(){o.rank=sel.value});
+      var m=h('textarea',{rows:'3',maxlength:'80'}); m.value=o.msg||'';
+      m.addEventListener('input',function(){o.msg=m.value});
+      var it=h('input',{type:'text',maxlength:'40'}); it.value=o.item||'';
+      it.addEventListener('input',function(){o.item=it.value});
+      box.appendChild(h('div',{class:'omi-item'},
+        h('label',{},(i+1)+'つ目 の運勢',sel),
+        h('label',{},'ひとこと',m),
+        h('label',{},'ラッキーアイテム',h('small',{text:'「ラッキーアイテム：○○」の形で書きます'}),it),
+        h('button',{class:'btn small del',type:'button',text:'この結果を消す',onclick:function(){list.splice(i,1);draw()}})));
+    });
+    if(list.length<20) box.appendChild(h('button',{class:'btn mint',type:'button',text:'＋ 結果を増やす',onclick:function(){
+      list.push({rank:'吉',msg:'',item:'ラッキーアイテム：'});draw();
+    }}));
+  }
+  draw(); card.appendChild(box);
+  card.appendChild(h('button',{class:'btn big',type:'button',text:'保存する',onclick:function(){
+    var clean=list.filter(function(o){return String(o.msg||'').trim()}).map(function(o){
+      return {rank:o.rank,msg:String(o.msg).trim(),item:String(o.item||'').trim()}});
+    if(!clean.length){toast('ひとことを1つ以上書いてね');return}
+    save('omikuji',clean,this).then(function(ok){if(ok){list=clean;draw()}});
+  }}));
+  body.appendChild(card);
+};
+
 PANELS.profile=function(body){
   var p=clone(cur.profile||{});
   var card=h('div',{class:'card'},h('h2',{text:'プロフィール'}));

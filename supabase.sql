@@ -36,7 +36,7 @@ create or replace function hana_save_setting(p text,k text,v jsonb) returns void
 language plpgsql security definer set search_path=public,extensions as $$
 begin
   if not hana_verify(p) then raise exception 'denied'; end if;
-  if k not in ('schedule','news','profile','home','outfits','gallery') then raise exception 'bad key'; end if;
+  if k not in ('schedule','news','profile','home','outfits','gallery','omikuji') then raise exception 'bad key'; end if;
   insert into hana_settings(key,value,updated_at) values (k,v,now())
   on conflict (key) do update set value=excluded.value, updated_at=now();
 end $$;
