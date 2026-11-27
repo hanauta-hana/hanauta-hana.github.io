@@ -71,8 +71,8 @@ window.HANA = {
   // ===== 保存先(Supabase) =====
   // 空のままなら「試作モード」(この端末のブラウザ内にだけ保存)で動きます。
   supabase: {
-    url: '',      // 例: https://xxxx.supabase.co
-    anonKey: '',  // 公開用(anon)キー
+    url: 'https://uglxilcwbgqoofnzngux.supabase.co',
+    anonKey: 'sb_publishable_R83zSq90hslRd5jl04sIPg_hZlLxfRC',  // 公開用キー(公開してよい)
     tables: { messages: 'hana_messages', contacts: 'hana_contacts' }
   }
 };
