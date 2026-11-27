@@ -311,7 +311,7 @@ window.hanaFx=(function(){var l=null;return function(){if(!l){l=document.createE
   var b=document.getElementById('refresh-btn');if(!b)return;
   b.addEventListener('click',function(){
     b.textContent='更新中…';b.disabled=true;
-    var go=function(){var u=new URL(location.href);u.searchParams.set('r',Date.now());location.replace(u.toString())};
+    var go=function(){var u=new URL(location.href);u.searchParams.set('r',Date.now());var f=function(){location.replace(u.toString())};try{fetch(location.pathname,{cache:'reload'}).then(f,f)}catch(e){f()}};
     try{if(window.caches&&caches.keys){caches.keys().then(function(k){return Promise.all(k.map(function(n){return caches.delete(n)}))}).then(go,go);return}}catch(e){}
     go();
   });
