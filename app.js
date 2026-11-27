@@ -197,7 +197,7 @@ $$('.seg-btn').forEach(function(b){
 
 /* ---------- スタンプカード ---------- */
 var STAMPS=10;
-var STAMP_IMG=['ico-sakura.png','ico-heart.png','ribbon.png','stamp-star.png','ico-moon.png','stamp-note.png','stamp-sparkle.png','stamp-crown.png','ico-game.png','chibi.png'];
+var STAMP_IMG=['ico-sakura.png','ico-heart.png','ribbon.png','stamp-star.png','ico-moon.png','stamp-note.png','stamp-sparkle.png','stamp-crown.png','stamp-mic.png','chibi.png'];
 function renderStamps(){
   var st=store.get('hana_stamps',{count:0,days:[]});
   var h='';
