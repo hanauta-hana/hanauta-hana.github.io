@@ -352,7 +352,6 @@ body.lb-open{overflow:hidden}
   -webkit-backface-visibility:hidden;backface-visibility:hidden;contain:layout paint}
 
 /* スワイプで画面が横にずれたりバウンドしたりしないように */
-html,body{overflow-x:clip;overscroll-behavior-x:none;overscroll-behavior-y:none;max-width:100%}
 .outfit-stage{touch-action:pan-y;overscroll-behavior:contain}
 .gal-track{touch-action:pan-x pan-y;overscroll-behavior-x:contain;overscroll-behavior-y:auto}
 .outfit-stage img,.gal-slide img,.lightbox img,.hero-img img{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
@@ -361,19 +360,18 @@ html,body{overflow-x:clip;overscroll-behavior-x:none;overscroll-behavior-y:none;
 /* 演出の花びらは、画面と同じ大きさの枠の中だけで動かす(横ずれ防止) */
 #fx{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:9998;contain:strict}
 .tap-petal,.storm-petal{position:absolute}
-html,body{overflow-x:hidden;touch-action:pan-y pinch-zoom}
-html{overflow-x:hidden}
-body{position:relative;width:100%}
-@supports (overflow:clip){html,body{overflow-x:clip}}
 
 /* ホーム画面アプリで、下のメニューが最初は切れて、スクロールで大きくなる問題の対策 */
 .tabbar{-webkit-transform:none;transform:none;will-change:auto;contain:none;
   -webkit-backface-visibility:visible;backface-visibility:visible;bottom:0}
-html{height:-webkit-fill-available;overflow-x:visible;overflow-y:auto}
-body{min-height:100vh;min-height:-webkit-fill-available;overflow-x:hidden}
-@supports(overflow:clip){html{overflow-x:visible}body{overflow-x:clip}}
 
 /* 下のメニュー: 画面の下端から少し浮かせ、最初から切れずに同じ大きさで見えるようにする */
 .tabbar{left:10px;right:10px;bottom:22px;padding:8px 10px;border-radius:26px;border:2px solid #fff;
   box-shadow:0 6px 20px rgba(228,134,174,.35)}
 body{padding-bottom:calc(var(--tabbar-h) + 48px)}
+
+
+/* 下のメニューは通常の固定表示に戻す(ホーム画面アプリで切れないように) */
+.tabbar{left:0;right:0;bottom:0;border-radius:0;border:0;border-top:2px solid #fff;
+  padding:10px 12px calc(14px + env(safe-area-inset-bottom));box-shadow:0 -4px 16px rgba(228,134,174,.2)}
+body{padding-bottom:calc(var(--tabbar-h) + 24px + env(safe-area-inset-bottom))}
