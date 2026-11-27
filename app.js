@@ -177,6 +177,8 @@ function renderHome(S){
       sf.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();next()} });
     }
   }
+  var rw=document.getElementById('reward-text');
+  if(rw&&hm.reward){ rw.textContent=''; String(hm.reward).split('\n').forEach(function(t,i){ if(i) rw.appendChild(document.createElement('br')); rw.appendChild(document.createTextNode(t)); }); }
   if(s&&hm.sub){ s.textContent=''; String(hm.sub).split('\n').forEach(function(t,i){ if(i) s.appendChild(document.createElement('br')); s.appendChild(document.createTextNode(t)); }); }
 }
 var OMI=null;

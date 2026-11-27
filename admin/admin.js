@@ -258,6 +258,20 @@ PANELS.omikuji=function(body){
   body.appendChild(card);
 };
 
+/* スタンプのごほうび */
+PANELS.reward=function(body){
+  var p=clone(cur.home||{});
+  var card=h('div',{class:'card'},h('h2',{text:'スタンプのごほうび'}),
+    h('p',{class:'note',text:'スタンプが10個たまったときに出る言葉です。Enterで改行した場所で、そのまま改行されます。'}));
+  var t=h('textarea',{rows:'4',maxlength:'120'}); t.value=p.reward||'';
+  t.addEventListener('input',function(){p.reward=t.value});
+  card.appendChild(h('label',{},'ごほうびの言葉',t));
+  card.appendChild(h('button',{class:'btn big',type:'button',text:'保存する',onclick:function(){
+    if(!String(p.reward||'').trim()){toast('言葉を書いてね');return}
+    save('home',p,this)}}));
+  body.appendChild(card);
+};
+
 PANELS.profile=function(body){
   var p=clone(cur.profile||{});
   var card=h('div',{class:'card'},h('h2',{text:'プロフィール'}));
