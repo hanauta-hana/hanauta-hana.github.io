@@ -365,3 +365,10 @@ html,body{overflow-x:hidden;touch-action:pan-y pinch-zoom}
 html{overflow-x:hidden}
 body{position:relative;width:100%}
 @supports (overflow:clip){html,body{overflow-x:clip}}
+
+/* ホーム画面アプリで、下のメニューが最初は切れて、スクロールで大きくなる問題の対策 */
+.tabbar{-webkit-transform:none;transform:none;will-change:auto;contain:none;
+  -webkit-backface-visibility:visible;backface-visibility:visible;bottom:0}
+html{height:-webkit-fill-available;overflow-x:visible;overflow-y:auto}
+body{min-height:100vh;min-height:-webkit-fill-available;overflow-x:hidden}
+@supports(overflow:clip){html{overflow-x:visible}body{overflow-x:clip}}
