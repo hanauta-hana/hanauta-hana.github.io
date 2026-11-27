@@ -66,15 +66,15 @@ $('#login-form').addEventListener('submit',function(e){
   st.className='status'; st.textContent='確認中…';
   API.verify(p).then(function(ok){
     if(!ok){st.className='status ng';st.textContent='合言葉がちがうみたい';return}
-    try{sessionStorage.setItem('hana_admin_pass',p)}catch(x){}
+    try{localStorage.setItem('hana_admin_pass',p)}catch(x){}
     return enter(p);
   }).catch(function(){st.className='status ng';st.textContent='つながりませんでした'});
 });
 $('#logout').addEventListener('click',function(){
-  try{sessionStorage.removeItem('hana_admin_pass')}catch(x){}
+  try{localStorage.removeItem('hana_admin_pass');sessionStorage.removeItem('hana_admin_pass')}catch(x){}
   pass='';$('#pass').value='';show('login');
 });
-(function(){var p='';try{p=sessionStorage.getItem('hana_admin_pass')||''}catch(x){}
+(function(){var p='';try{p=localStorage.getItem('hana_admin_pass')||sessionStorage.getItem('hana_admin_pass')||''}catch(x){}
   if(p) API.verify(p).then(function(ok){if(ok) enter(p)}).catch(function(){});})();
 
 /* ---------- 画像の縮小(アップロード用) ---------- */
