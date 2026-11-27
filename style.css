@@ -391,3 +391,9 @@ body{padding-bottom:28px}
 .chip{min-height:44px;padding-top:9px;padding-bottom:9px}
 .seg-btn{min-height:44px}
 .ob-ctl .ob-arrow{width:44px;height:44px}
+
+/* 横ガタつき防止(上メニューは sticky なので、clip なら影響しない) */
+html,body{overflow-x:clip;max-width:100%;overscroll-behavior-x:none;touch-action:pan-y pinch-zoom}
+.petals{overflow:hidden;contain:paint}
+.gal-track,.outfit-stage{touch-action:pan-x pan-y}
+.outfit-stage{touch-action:pan-y}
