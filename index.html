@@ -4,7 +4,7 @@
 <meta name="robots" content="noindex,nofollow">
 <style>html.locked body>:not(#gate){visibility:hidden}</style>
 <script>/* 自動更新チェック: version.json と違えば読み込み直す */
-window.HANA_V="202611271630";
+window.HANA_V="202611271635";
 (function(){try{fetch("version.json?t="+Date.now(),{cache:"no-store"}).then(function(r){return r.json()}).then(function(j){
 if(j&&j.v&&j.v!==window.HANA_V){var k="hana_vr";if(sessionStorage.getItem(k)===j.v)return;sessionStorage.setItem(k,j.v);
 var u=new URL(location.href);u.searchParams.set("r",j.v);var go=function(){location.replace(u.toString())};try{fetch(location.pathname,{cache:"reload"}).then(go,go)}catch(e){go()}}}).catch(function(){})}catch(e){}})();
@@ -29,7 +29,7 @@ var u=new URL(location.href);u.searchParams.set("r",j.v);var go=function(){locat
 <meta property="og:description" content="毎日17:30と22:00に雑談配信。おみくじ・スタンプカードもあるよ🌸">
 <meta property="og:image" content="img/icon-512.png">
 <meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="style.css?v=202611271630">
+<link rel="stylesheet" href="style.css?v=202611271635">
 </head>
 <body>
 <div class="petals" id="petals" aria-hidden="true"></div>
@@ -141,7 +141,7 @@ var u=new URL(location.href);u.searchParams.set("r",j.v);var go=function(){locat
       <label>メッセージ <small id="msg-len">0/300</small>
         <textarea name="body" rows="5" maxlength="300" required placeholder="感想・質問・応援など、なんでもどうぞ🌸"></textarea>
       </label>
-      <label class="check"><input type="checkbox" name="read_ok" checked> 配信で読まれてもOK</label>
+      <label class="check"><input type="checkbox" name="read_ok" checked> 配信やXで紹介されてもOK(名前は出ません)</label>
       <input type="text" name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn big" type="submit"><img class="ei" src="img/ico-bubble.png" alt=""> そうしんする</button>
       <p class="form-status" id="msg-status" role="status"></p>
@@ -190,9 +190,9 @@ var u=new URL(location.href);u.searchParams.set("r",j.v);var go=function(){locat
   <button class="tab" data-page="play"><i><b class="ti" style="background-image:url(img/ico-sakura.png)"></b></i><span>あそぶ</span></button>
 </nav>
 
-<script src="config.js?v=202611271630"></script>
-<script src="gate.js?v=202611271630"></script>
-<script src="api.js?v=202611271630"></script>
-<script src="app.js?v=202611271630"></script>
+<script src="config.js?v=202611271635"></script>
+<script src="gate.js?v=202611271635"></script>
+<script src="api.js?v=202611271635"></script>
+<script src="app.js?v=202611271635"></script>
 </body>
 </html>

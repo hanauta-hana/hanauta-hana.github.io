@@ -346,8 +346,17 @@ PANELS.inbox=function(body){
       list.innerHTML='';
       if(!rows||!rows.length){list.appendChild(h('p',{class:'note',text:'まだ届いていません'}));return}
       rows.forEach(function(r){
-        if(mode==='msg') list.appendChild(h('div',{class:'msg'},h('time',{text:fmt(r.created_at)}),r.body,
-          h('div',{class:'m',text:r.read_ok?'配信で読まれてもOK':'読まないでほしい'})));
+        if(mode==='msg'){
+          var row=h('div',{class:'msg'},h('time',{text:fmt(r.created_at)}),r.body,
+            h('div',{class:'m',text:r.read_ok?'紹介してもOK':'紹介しないでほしい'}));
+          if(r.read_ok){
+            var body=String(r.body||'').replace(/\s+/g,' ').trim(); if(body.length>110) body=body.slice(0,110)+'…';
+            var txt='匿名メッセージが届きました💌\n\n「'+body+'」\n\nありがとう🌸\n'+(location.origin+'/');
+            row.appendChild(h('div',{},h('a',{class:'btn small',target:'_blank',rel:'noopener',
+              href:'https://twitter.com/intent/tweet?text='+encodeURIComponent(txt),text:'𝕏 でポストする'})));
+          }
+          list.appendChild(row);
+        }
         else list.appendChild(h('div',{class:'msg'},h('time',{text:fmt(r.created_at)}),
           h('div',{class:'m',text:r.kind+' ／ '+r.name+' ／ 返信先: '+r.reply_to}),r.body));
       });
