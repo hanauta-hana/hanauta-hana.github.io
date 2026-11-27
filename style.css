@@ -406,3 +406,6 @@ body::before{content:"";position:fixed;left:0;right:0;top:0;bottom:0;z-index:-1;
 
 /* ひとこま写真: 縦長の写真が切れすぎないように */
 .gal-slide img{aspect-ratio:3/4;object-fit:cover;object-position:center 30%;background:#fde4ee}
+
+/* ホーム: 立ち絵(桜の衣装)を切らずに全体を見せる */
+.hero-img>img:first-child{aspect-ratio:900/1600;object-fit:cover;object-position:50% 50%}
