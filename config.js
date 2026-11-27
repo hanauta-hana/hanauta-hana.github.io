@@ -19,8 +19,9 @@ window.HANA = {
   ],
 
   home: {
-    catch: 'いらっしゃいませ、飼い主さん',
-    sub: 'ゆるっと毎日おしゃべり配信。\n雑談・歌・ゲームをのんびりお届け。\nいつでも遊びにきてね。'
+    serif: 'いらっしゃいませ、\n飼い主さん',
+    catch: 'ゆるっと毎日おしゃべり配信',
+    sub: '雑談・歌・ゲームをのんびりお届け。\n専属飼い主さん、いつでも遊びにきてね。'
   },
 
   profile: {
@@ -52,7 +53,8 @@ window.HANA = {
 
   links: [
     { name: 'Mirrativ', sub: '配信・アーカイブ', url: 'https://www.mirrativ.com/user/155617998' },
-    { name: 'X', sub: '@hana_game0705', url: 'https://x.com/hana_game0705' }
+    { name: 'X', sub: '@hana_game0705', url: 'https://x.com/hana_game0705' },
+    { name: 'ほしいものリスト', sub: '差し入れはこちら', url: 'https://gi-pt.com/main/wishlist/fan-view/3a1c81b3-83ed-ddc0-2f38-d302c37a3aaa' }
   ],
 
   // おみくじ(赤系の絵文字は使わない)

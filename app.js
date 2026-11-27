@@ -164,6 +164,8 @@ function renderLinks(){
 function renderHome(S){
   var hm=S.home||{}, c=document.getElementById('home-catch'), s=document.getElementById('home-sub');
   if(c&&hm.catch) c.textContent=hm.catch;
+  var sf=document.getElementById('home-serif');
+  if(sf&&hm.serif){ sf.textContent=''; String(hm.serif).split('\n').forEach(function(t,i){ if(i) sf.appendChild(document.createElement('br')); sf.appendChild(document.createTextNode(t)); }); }
   if(s&&hm.sub){ s.textContent=''; String(hm.sub).split('\n').forEach(function(t,i){ if(i) s.appendChild(document.createElement('br')); s.appendChild(document.createTextNode(t)); }); }
 }
 function renderAll(S){renderHome(S);renderSchedule(S);renderNews(S);renderProfile(S);renderOutfits(S);renderGallery(S);renderLinks()}

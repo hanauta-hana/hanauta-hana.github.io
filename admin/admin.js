@@ -196,6 +196,9 @@ PANELS.news=function(body){
 PANELS.home=function(body){
   var p=clone(cur.home||{});
   var card=h('div',{class:'card'},h('h2',{text:'ホームの言葉'}));
+  var sv=h('textarea',{rows:'2',maxlength:'40'}); sv.value=p.serif||'';
+  sv.addEventListener('input',function(){p.serif=sv.value});
+  card.appendChild(h('label',{},'立ち絵のふきだし(セリフ)',h('small',{text:'立ち絵の近くに出る言葉です。改行できます'}),sv));
   var a=h('input',{type:'text',maxlength:'30'}); a.value=p.catch||'';
   a.addEventListener('input',function(){p.catch=a.value});
   var b=h('textarea',{rows:'4',maxlength:'120'}); b.value=p.sub||'';

@@ -409,3 +409,14 @@ body::before{content:"";position:fixed;left:0;right:0;top:0;bottom:0;z-index:-1;
 
 /* ホーム: 立ち絵(桜の衣装)を切らずに全体を見せる */
 .hero-img>img:first-child{aspect-ratio:900/1600;object-fit:cover;object-position:50% 50%}
+
+/* ホーム: 立ち絵のふきだし(セリフ) */
+.serif{position:absolute;z-index:3;left:3.5%;top:5%;margin:0;padding:8px 11px;max-width:36%;
+  background:rgba(255,255,255,.94);border:2px solid #f4a6c8;border-radius:16px;
+  color:#d4558f;font-size:13px;font-weight:700;line-height:1.45;text-align:center;
+  box-shadow:0 3px 10px rgba(228,134,174,.35);animation:serif-pop 3.6s ease-in-out infinite}
+.serif::after{content:"";position:absolute;right:-9px;bottom:10px;width:14px;height:14px;background:rgba(255,255,255,.94);
+  border-right:2px solid #f4a6c8;border-top:2px solid #f4a6c8;transform:rotate(45deg) skew(8deg,8deg);border-radius:0 4px 0 0}
+@keyframes serif-pop{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@media (prefers-reduced-motion:reduce){.serif{animation:none}}
+.serif{max-width:none;white-space:nowrap;font-size:12px;padding:7px 11px;left:3%;top:4%}
