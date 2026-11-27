@@ -403,3 +403,6 @@ body{padding-top:var(--sat);padding-bottom:calc(var(--tabbar-h) + var(--sab) + 2
 html{background-color:#fcd5e3}
 body::before{content:"";position:fixed;left:0;right:0;top:0;bottom:0;z-index:-1;pointer-events:none;background:linear-gradient(170deg,#fde4ee 0%,#f9c3da 38%,#fcd5e3 70%,#e9f6f1 100%);-webkit-transform:translateZ(0)}
 .card{backdrop-filter:none;-webkit-backdrop-filter:none}
+
+/* ひとこま写真: 縦長の写真が切れすぎないように */
+.gal-slide img{aspect-ratio:3/4;object-fit:cover;object-position:center 30%;background:#fde4ee}

@@ -36,9 +36,13 @@ window.HANA = {
   ],
 
   gallery: [
-    { src: 'img/game-9883.webp' },
-    { src: 'img/game-9884.webp' },
-    { src: 'img/game-9885.webp' }
+    { src: 'img/gallery-1.webp' },
+    { src: 'img/gallery-2.webp' },
+    { src: 'img/gallery-3.webp' },
+    { src: 'img/gallery-4.webp' },
+    { src: 'img/gallery-5.webp' },
+    { src: 'img/gallery-6.webp' },
+    { src: 'img/gallery-7.webp' }
   ],
 
   links: [
