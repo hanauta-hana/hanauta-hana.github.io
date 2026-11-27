@@ -430,3 +430,8 @@ body::before{content:"";position:fixed;left:0;right:0;top:0;bottom:0;z-index:-1;
 .serif.pop{animation:serif-swap .35s ease-out,serif-pop 3.6s ease-in-out .35s infinite}
 @keyframes serif-swap{0%{transform:scale(.8);opacity:.2}60%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
 @media (prefers-reduced-motion:reduce){.serif.pop{animation:none}}
+
+/* ふきだしのしっぽを整える(正方形を45度回して左へ小さく出す) */
+.serif::after{width:12px;height:12px;left:-8px;right:auto;bottom:auto;top:50%;margin-top:-6px;
+  background:rgba(255,255,255,.94);border:0;border-left:2px solid #f4a6c8;border-bottom:2px solid #f4a6c8;
+  border-radius:0 0 0 3px;transform:rotate(45deg)}
