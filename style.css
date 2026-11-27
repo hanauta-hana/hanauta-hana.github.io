@@ -357,3 +357,11 @@ html,body{overflow-x:clip;overscroll-behavior-x:none;overscroll-behavior-y:none;
 .gal-track{touch-action:pan-x pan-y;overscroll-behavior-x:contain;overscroll-behavior-y:auto}
 .outfit-stage img,.gal-slide img,.lightbox img,.hero-img img{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
 .outfit-stage,.gal-track,.tabbar{-webkit-tap-highlight-color:transparent}
+
+/* 演出の花びらは、画面と同じ大きさの枠の中だけで動かす(横ずれ防止) */
+#fx{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:9998;contain:strict}
+.tap-petal,.storm-petal{position:absolute}
+html,body{overflow-x:hidden;touch-action:pan-y pinch-zoom}
+html{overflow-x:hidden}
+body{position:relative;width:100%}
+@supports (overflow:clip){html,body{overflow-x:clip}}

@@ -246,6 +246,9 @@ bindForm('#form-contact','#ct-status','#ct-len',T.contacts,1000,function(f){
 });
 })();
 
+/* ---------- 演出用の枠(はみ出しても画面が横にずれないよう切り取る) ---------- */
+window.hanaFx=(function(){var l=null;return function(){if(!l){l=document.createElement('div');l.id='fx';document.body.appendChild(l)}return l}})();
+
 /* ---------- タップすると桜がぱっと広がる ---------- */
 (function(){
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)return;
@@ -259,7 +262,7 @@ bindForm('#form-contact','#ct-status','#ct-len',T.contacts,1000,function(f){
       d.style.cssText='left:'+e.clientX+'px;top:'+e.clientY+'px;width:'+s+'px;height:'+s+'px;'+
         '--dx:'+(Math.cos(a)*r).toFixed(1)+'px;--dy:'+(Math.sin(a)*r-14).toFixed(1)+'px;--rot:'+Math.round(Math.random()*540-270)+'deg;'+
         'background-image:url(img/petal/p'+Math.floor(Math.random()*8)+'.png)';
-      document.body.appendChild(d);
+      window.hanaFx().appendChild(d);
       (function(el){setTimeout(function(){el.remove()},900)})(d);
     }
   },{passive:true});
@@ -293,7 +296,7 @@ bindForm('#form-contact','#ct-status','#ct-len',T.contacts,1000,function(f){
           dx=-(W*(0.5+Math.random()*0.9)), dy=H*(0.85+Math.random()*0.5), dur=2.2+Math.random()*2.2, del=Math.random()*0.9;
       d.style.cssText='left:0;top:0;width:'+s+'px;height:'+s+'px;--x0:'+x0.toFixed(0)+'px;--y0:'+y0.toFixed(0)+'px;--dx:'+dx.toFixed(0)+'px;--dy:'+dy.toFixed(0)+'px;--rot:'+Math.round(Math.random()*900-300)+'deg;'+
         'animation-duration:'+dur.toFixed(2)+'s;animation-delay:'+del.toFixed(2)+'s;background-image:url(img/petal/p'+Math.floor(Math.random()*8)+'.png)';
-      document.body.appendChild(d);
+      window.hanaFx().appendChild(d);
       (function(el,t){setTimeout(function(){el.remove()},t)})(d,(dur+del)*1000+100);
     }
   }
