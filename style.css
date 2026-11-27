@@ -345,3 +345,15 @@ body.lb-open{overflow:hidden}
 .tab.on{color:#fff;background:linear-gradient(180deg,#f7a9cb,#ee8fb7);border-color:#fff;box-shadow:0 3px 0 #dd78a3}
 .tab.on i .ti,.tab.on i .rb{filter:brightness(0) invert(1) drop-shadow(0 0 1px rgba(255,255,255,.6))}
 :root{--tabbar-h:76px}
+
+/* スクロール中に下のメニューがぶれないよう、独立した層にして固定 */
+.tabbar{-webkit-backdrop-filter:none;backdrop-filter:none;
+  -webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);will-change:transform;
+  -webkit-backface-visibility:hidden;backface-visibility:hidden;contain:layout paint}
+
+/* スワイプで画面が横にずれたりバウンドしたりしないように */
+html,body{overflow-x:clip;overscroll-behavior-x:none;overscroll-behavior-y:none;max-width:100%}
+.outfit-stage{touch-action:pan-y;overscroll-behavior:contain}
+.gal-track{touch-action:pan-x pan-y;overscroll-behavior-x:contain;overscroll-behavior-y:auto}
+.outfit-stage img,.gal-slide img,.lightbox img,.hero-img img{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-user-drag:none}
+.outfit-stage,.gal-track,.tabbar{-webkit-tap-highlight-color:transparent}
