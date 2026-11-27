@@ -165,7 +165,18 @@ function renderHome(S){
   var hm=S.home||{}, c=document.getElementById('home-catch'), s=document.getElementById('home-sub');
   if(c&&hm.catch){ c.textContent=''; String(hm.catch).split('\n').forEach(function(t,i){ if(i) c.appendChild(document.createElement('br')); c.appendChild(document.createTextNode(t)); }); }
   var sf=document.getElementById('home-serif');
-  if(sf&&hm.serif){ sf.textContent=''; String(hm.serif).split('\n').forEach(function(t,i){ if(i) sf.appendChild(document.createElement('br')); sf.appendChild(document.createTextNode(t)); }); }
+  var list=(hm.serifs&&hm.serifs.length)?hm.serifs.filter(function(t){return String(t).trim()}):(hm.serif?[hm.serif]:[]);
+  if(sf&&list.length){
+    var k=0;
+    var put=function(t){ sf.textContent=''; String(t).split('\n').forEach(function(x,n){ if(n) sf.appendChild(document.createElement('br')); sf.appendChild(document.createTextNode(x)); }); };
+    put(list[0]);
+    if(list.length>1&&!sf.dataset.on){
+      sf.dataset.on='1'; sf.setAttribute('role','button'); sf.setAttribute('tabindex','0'); sf.title='タップでことばがかわるよ';
+      var next=function(e){ if(e) e.stopPropagation(); k=(k+1)%list.length; sf.classList.remove('pop'); void sf.offsetWidth; put(list[k]); sf.classList.add('pop'); };
+      sf.addEventListener('click',next);
+      sf.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();next()} });
+    }
+  }
   if(s&&hm.sub){ s.textContent=''; String(hm.sub).split('\n').forEach(function(t,i){ if(i) s.appendChild(document.createElement('br')); s.appendChild(document.createTextNode(t)); }); }
 }
 function renderAll(S){renderHome(S);renderSchedule(S);renderNews(S);renderProfile(S);renderOutfits(S);renderGallery(S);renderLinks()}

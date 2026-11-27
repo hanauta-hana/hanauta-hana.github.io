@@ -20,7 +20,7 @@ function defaults(){
 }
 function merge(saved){
   var d=defaults(); saved=saved||{};
-  Object.keys(saved).forEach(function(k){ if(saved[k]!==null&&saved[k]!==undefined) d[k]=saved[k]; });
+  Object.keys(saved).forEach(function(k){ if(saved[k]!==null&&saved[k]!==undefined) d[k]=(k==='home'&&d.home)?Object.assign({},d.home,saved[k]):saved[k]; });
   return d;
 }
 function getSettings(){

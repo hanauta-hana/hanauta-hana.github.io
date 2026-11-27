@@ -196,9 +196,22 @@ PANELS.news=function(body){
 PANELS.home=function(body){
   var p=clone(cur.home||{});
   var card=h('div',{class:'card'},h('h2',{text:'ホームの言葉'}));
-  var sv=h('textarea',{rows:'2',maxlength:'40'}); sv.value=p.serif||'';
-  sv.addEventListener('input',function(){p.serif=sv.value});
-  card.appendChild(h('label',{},'立ち絵のふきだし(セリフ)',h('small',{text:'立ち絵の近くに出る言葉です。Enterで改行した場所で、ふきだしも改行されます'}),sv));
+  var serifs=(p.serifs&&p.serifs.length)?p.serifs.slice():(p.serif?[p.serif]:['']);
+  var box=h('div',{class:'serif-list'});
+  function sync(){ p.serifs=serifs.filter(function(t){return String(t).trim()}); p.serif=p.serifs[0]||''; }
+  function draw(){
+    box.innerHTML='';
+    serifs.forEach(function(t,i){
+      var ta=h('textarea',{rows:'2',maxlength:'40'}); ta.value=t;
+      ta.addEventListener('input',function(){serifs[i]=ta.value;sync()});
+      var row=h('div',{class:'serif-row'},ta);
+      if(serifs.length>1) row.appendChild(h('button',{class:'btn mint',type:'button',text:'消す',onclick:function(){serifs.splice(i,1);sync();draw()}}));
+      box.appendChild(row);
+    });
+    if(serifs.length<8) box.appendChild(h('button',{class:'btn mint',type:'button',text:'＋ セリフを増やす',onclick:function(){serifs.push('');draw()}}));
+  }
+  card.appendChild(h('label',{},'立ち絵のふきだし(セリフ)',h('small',{text:'立ち絵の近くに出る言葉です。何個でも(最大8個)入れられて、タップすると順番に入れ替わります。Enterで改行した場所で、ふきだしも改行されます'})));
+  card.appendChild(box); draw(); sync();
   var a=h('textarea',{rows:'2',maxlength:'40'}); a.value=p.catch||'';
   a.addEventListener('input',function(){p.catch=a.value});
   var b=h('textarea',{rows:'4',maxlength:'120'}); b.value=p.sub||'';

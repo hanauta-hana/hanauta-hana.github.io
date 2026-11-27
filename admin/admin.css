@@ -52,3 +52,7 @@ label small{font-weight:400;color:var(--ink-soft)}
 .tabs button.on{background:var(--pink);color:#fff;border-color:var(--pink)}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;border-radius:999px;padding:10px 20px;opacity:0;pointer-events:none;transition:.25s;font-weight:700;z-index:9}
 .toast.on{opacity:1;transform:translate(-50%,0)}
+
+.serif-row{display:flex;gap:8px;align-items:flex-start;margin:6px 0}
+.serif-row textarea{flex:1}
+.serif-row .btn{flex:0 0 auto;min-height:44px}
