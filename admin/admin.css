@@ -54,5 +54,5 @@ label small{font-weight:400;color:var(--ink-soft)}
 .toast.on{opacity:1;transform:translate(-50%,0)}
 
 .serif-row{display:flex;gap:8px;align-items:flex-start;margin:6px 0}
-.serif-row textarea{flex:1}
-.serif-row .btn{flex:0 0 auto;min-height:44px}
+.serif-row textarea{flex:1 1 0;min-width:0;width:auto;min-height:56px}
+.serif-row .btn{flex:0 0 64px;width:64px;min-height:44px;margin-top:0;padding:8px 0;font-size:13px;background:#fff;color:#a57f90;box-shadow:0 2px 0 #eadde3}
