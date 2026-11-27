@@ -423,3 +423,4 @@ body::before{content:"";position:fixed;left:0;right:0;top:0;bottom:0;z-index:-1;
 /* セリフはロゴの下(右側)に */
 .serif{left:auto;right:3%;top:17%}
 .serif::after{right:auto;left:-9px;bottom:10px;border-right:0;border-top:0;border-left:2px solid #f4a6c8;border-bottom:2px solid #f4a6c8;transform:rotate(45deg) skew(8deg,8deg);border-radius:0 0 0 4px}
+.serif{top:12%}
