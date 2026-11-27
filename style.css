@@ -385,3 +385,8 @@ body{padding-bottom:calc(var(--tabbar-h) + 24px + env(safe-area-inset-bottom))}
 .tab i{transform:scale(.82);margin:-3px 0}
 body{padding-bottom:28px}
 :root{--tabbar-h:0px}
+
+/* スマホで押しやすいよう、小さめのボタンを大きめに */
+.ob-arrow{width:44px;height:44px}
+.chip{min-height:44px;padding-top:9px;padding-bottom:9px}
+.seg-btn{min-height:44px}
