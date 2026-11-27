@@ -442,3 +442,8 @@ body::before{content:"";position:fixed;left:0;right:0;top:0;bottom:0;z-index:-1;
 .serif::before{left:-11px;margin-top:-7px;border-color:transparent #f4a6c8 transparent transparent}
 .serif::after{left:-8px;margin-top:-7px;border-color:transparent rgba(255,255,255,.96) transparent transparent;
   border-width:7px 9px 7px 0;right:auto;bottom:auto}
+
+/* 文字: 見出しだけ Hachi Maru Pop(丸くてかわいい手書き風)。本文は読みやすさのため Zen Maru Gothic のまま。
+   全体を変えるときは、下の1行の対象に html,body,button,input,textarea,select を足す */
+:root{--font-cute:'Hachi Maru Pop','Zen Maru Gothic','Hiragino Maru Gothic ProN','Yu Gothic',sans-serif}
+.h,.catch,.rank,.serif{font-family:var(--font-cute);font-synthesis:none}
