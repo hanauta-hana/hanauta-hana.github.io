@@ -161,7 +161,12 @@ function renderLinks(){
     return '<li><a href="'+safeUrl(l.url)+'" target="_blank" rel="noopener"><b>'+esc(l.name)+'</b><small>'+esc(l.sub)+'</small></a></li>';
   }).join('');
 }
-function renderAll(S){renderSchedule(S);renderNews(S);renderProfile(S);renderOutfits(S);renderGallery(S);renderLinks()}
+function renderHome(S){
+  var hm=S.home||{}, c=document.getElementById('home-catch'), s=document.getElementById('home-sub');
+  if(c&&hm.catch) c.textContent=hm.catch;
+  if(s&&hm.sub){ s.textContent=''; String(hm.sub).split('\n').forEach(function(t,i){ if(i) s.appendChild(document.createElement('br')); s.appendChild(document.createTextNode(t)); }); }
+}
+function renderAll(S){renderHome(S);renderSchedule(S);renderNews(S);renderProfile(S);renderOutfits(S);renderGallery(S);renderLinks()}
 
 renderAll(API.defaults());                              // まず初期設定で表示
 API.getSettings().then(renderAll).catch(function(){});  // 保存済みの内容があれば差し替え

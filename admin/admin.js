@@ -193,6 +193,18 @@ PANELS.news=function(body){
 };
 
 /* プロフィール */
+PANELS.home=function(body){
+  var p=clone(cur.home||{});
+  var card=h('div',{class:'card'},h('h2',{text:'ホームの言葉'}));
+  var a=h('input',{type:'text',maxlength:'30'}); a.value=p.catch||'';
+  a.addEventListener('input',function(){p.catch=a.value});
+  var b=h('textarea',{rows:'4',maxlength:'120'}); b.value=p.sub||'';
+  b.addEventListener('input',function(){p.sub=b.value});
+  card.appendChild(h('label',{},'見出し(大きい文字)',h('small',{text:'ホームの一番目立つ言葉です'}),a));
+  card.appendChild(h('label',{},'説明',h('small',{text:'改行するとそのまま改行されます'}),b));
+  card.appendChild(h('button',{class:'btn big',type:'button',text:'保存する',onclick:function(){save('home',p,this)}}));
+  body.appendChild(card);
+};
 PANELS.profile=function(body){
   var p=clone(cur.profile||{});
   var card=h('div',{class:'card'},h('h2',{text:'プロフィール'}));
