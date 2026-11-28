@@ -16,7 +16,7 @@ function start(){
   st.textContent=
   '#intro{position:fixed;inset:0;z-index:9000;overflow:hidden;background:linear-gradient(170deg,#fde4ee,#f9c3da 50%,#fcd5e3);opacity:1;transition:opacity .9s ease;touch-action:manipulation}'+
   '#intro.out{opacity:0;pointer-events:none}'+
-  '#intro .in-vp{position:absolute;inset:0;z-index:2;-webkit-mask-image:'+M+';mask-image:'+M+';-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:50% 50%;mask-position:50% 50%;-webkit-mask-size:96vw 50vw;mask-size:96vw 50vw;animation:in-mask 6s .9s both}'+
+  '#intro .in-vp{position:absolute;inset:0;z-index:2;-webkit-mask-image:'+M+';mask-image:'+M+';-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:50% 50%;mask-position:50% 50%;-webkit-mask-size:84vw 36vw;mask-size:84vw 36vw;animation:in-mask 6s .9s both}'+
   '#intro .in-cam{position:absolute;left:0;top:5%;width:100%;height:88%;transform-origin:40% 18%;animation:in-cam 6s .9s both}'+
   '#intro .in-img{display:block;width:100%;height:100%;object-fit:contain;opacity:0;filter:drop-shadow(0 6px 14px rgba(160,50,100,.35));animation:in-rise .5s 1.1s ease-out forwards}'+
   '#intro .in-logo{position:absolute;z-index:3;top:calc(env(safe-area-inset-top,0px) + 14px);right:4%;width:40%;height:auto;opacity:0;transform:scale(.6) rotate(-6deg);animation:in-pop .8s 5.9s cubic-bezier(.2,1.5,.4,1) forwards;filter:drop-shadow(0 2px 6px rgba(107,40,70,.45))}'+
@@ -30,9 +30,9 @@ function start(){
   /* ぱあっと広がる花びら */
   '#intro .in-b{position:absolute;left:50%;top:46%;z-index:4;width:var(--s);height:var(--s);margin:calc(var(--s)/-2) 0 0 calc(var(--s)/-2);opacity:0;filter:saturate(1.5) drop-shadow(0 0 4px rgba(255,255,255,.9));animation:in-burst var(--d) var(--l) cubic-bezier(.1,.7,.3,1) forwards}'+
   '#intro .in-sp{position:absolute;z-index:3;width:var(--s);height:var(--s);background:#fff;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);opacity:0;filter:drop-shadow(0 0 4px #ffd1e6);animation:in-tw 1.4s var(--l) ease-in-out infinite}'+
-  '@keyframes in-mask{0%,38%{-webkit-mask-size:96vw 50vw;mask-size:96vw 50vw}40%,60%{-webkit-mask-size:92vw 92vw;mask-size:92vw 92vw}76%,100%{-webkit-mask-size:320vmax 320vmax;mask-size:320vmax 320vmax}}'+
+  '@keyframes in-mask{0%,38%{-webkit-mask-size:84vw 36vw;mask-size:84vw 36vw}40%,60%{-webkit-mask-size:84vw 84vw;mask-size:84vw 84vw}76%,100%{-webkit-mask-size:320vmax 320vmax;mask-size:320vmax 320vmax}}'+
   /* カメラ: 手 → (風で切替)顔 → 全身 */
-  '@keyframes in-cam{0%{transform:translate(10%,32%) scale(2.2)}38%{transform:translate(10%,32%) scale(2.3)}40%{transform:translate(3.2%,50%) scale(2.4)}41%{transform:translate(3.2%,50%) scale(2.4)}60%{transform:translate(3.2%,50%) scale(2.5);animation-timing-function:cubic-bezier(.4,0,.15,1)}78%,100%{transform:translate(0,0) scale(1)}}'+
+  '@keyframes in-cam{0%{transform:translate(10%,32%) scale(1.35)}38%{transform:translate(10%,32%) scale(1.4)}40%{transform:translate(6.1%,42.4%) scale(1.4)}41%{transform:translate(6.1%,42.4%) scale(1.4)}60%{transform:translate(6.1%,42.4%) scale(1.45);animation-timing-function:cubic-bezier(.4,0,.15,1)}78%,100%{transform:translate(0,0) scale(1)}}'+
   '@keyframes in-rise{0%{opacity:0}100%{opacity:1}}'+
   '@keyframes in-pop{0%{opacity:0;transform:scale(.6) rotate(-6deg)}100%{opacity:1;transform:scale(1) rotate(0)}}'+
   '@keyframes in-msg{to{opacity:1;transform:translateX(-50%) scale(1)}}'+
