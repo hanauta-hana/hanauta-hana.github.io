@@ -453,7 +453,7 @@ body::before{content:"";position:fixed;left:0;right:0;top:0;bottom:0;z-index:-1;
 .lightbox img{max-height:100%}
 
 /* クレジット(アコーディオン) */
-.credit{margin:6px auto 0;max-width:260px}
+.credit{margin:6px auto 0;max-width:300px}
 .credit summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);font-size:12px;padding:6px 12px;border-radius:999px;-webkit-tap-highlight-color:transparent}
 .credit summary::-webkit-details-marker{display:none}
 .credit summary::after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .25s}
