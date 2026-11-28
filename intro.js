@@ -33,9 +33,9 @@ function start(){
   /* 風で流れる花びら(手前) */
   '#intro .in-w,#intro-after .in-w{position:absolute;top:0;left:0;z-index:4;width:var(--s);height:var(--s);opacity:0;animation:in-sweep var(--d) var(--l) cubic-bezier(.3,.1,.5,1) forwards}'+
   /* ぱあっと広がる花びら */
-  '#intro-after .in-k{position:absolute;left:0;top:0;width:var(--s);height:var(--s);animation:in-wall var(--d) var(--l) cubic-bezier(.4,0,.6,1) both}'+
+  '#intro-after .in-k{position:absolute;left:0;top:0;width:var(--s);height:var(--s);animation:in-wall 2.4s var(--l) linear both}'+
   '#intro-after .in-k b{animation:none}'+
-  '@keyframes in-wall{0%{transform:translate(calc(var(--x) + 120vw),var(--y)) rotate(var(--r0));opacity:0}22%{transform:translate(var(--x),var(--y)) rotate(calc(var(--r0) + 120deg));opacity:1}55%{transform:translate(var(--x),var(--y)) rotate(calc(var(--r0) + 120deg));opacity:1}100%{transform:translate(calc(var(--x) + var(--cx)),calc(var(--y) + var(--cy))) rotate(calc(var(--r0) + 560deg));opacity:0}}'+
+  '@keyframes in-wall{0%{transform:translate(var(--sx),var(--y)) rotate(var(--r0));opacity:0}6%{opacity:1}50%{transform:translate(calc((var(--sx) + var(--ex))/2),calc(var(--y) + var(--w))) rotate(calc(var(--r0) + var(--rv)/2))}100%{transform:translate(var(--ex),var(--y)) rotate(calc(var(--r0) + var(--rv)));opacity:1}}'+
   '#intro-after{position:fixed;inset:0;z-index:9100;overflow:hidden;pointer-events:none}'+
   '#intro .in-b{position:absolute;left:50%;top:46%;z-index:4;width:var(--s);height:var(--s);margin:calc(var(--s)/-2) 0 0 calc(var(--s)/-2);opacity:0;animation:in-burst var(--d) var(--l) cubic-bezier(.1,.7,.3,1) forwards}'+
   '#intro .in-sp{position:absolute;z-index:3;width:var(--s);height:var(--s);background:#fff;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);opacity:0;filter:drop-shadow(0 0 4px #ffd1e6);animation:in-tw 1.4s var(--l) ease-in-out infinite}'+
@@ -152,17 +152,17 @@ function start(){
       var s2=R(10,26),y0=R(-30,ch*.95),dl=.4+Math.pow(Math.random(),1.25)*5.6;
       g+='<i class="in-w" style="--s:'+s2.toFixed(0)+'px;--x0:'+(cw+70+R(0,80)).toFixed(0)+'px;--x1:'+(-80-R(0,120)).toFixed(0)+'px;--y0:'+y0.toFixed(0)+'px;--y1:'+(y0+R(-160,220)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+R(1.5,2.6).toFixed(2)+'s;--l:'+dl.toFixed(2)+'s"><b style="--f:'+R(.5,1.1).toFixed(2)+'s;background-image:url('+P()+')"></b></i>';
     }
-    var wl='';
-    for(var wn=0;wn<300;wn++){
-      var wz=R(80,140),wx=R(-30,cw-20),wy=R(-30,ch-30),wc=wy+wz/2,wb=(wc<T0+TH*2&&wc>T0+TH)?0:(wc>=T0+TH*2?1:2),
-          wd=[2.7,3.2,3.7][wb]+R(0,.25);
-      wl+='<i class="in-k" style="--s:'+wz.toFixed(0)+'px;--x:'+wx.toFixed(0)+'px;--y:'+wy.toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--cx:'+(cw*R(.7,1.3)+120).toFixed(0)+'px;--cy:'+R(-260,160).toFixed(0)+'px;--d:'+wd.toFixed(2)+'s;--l:'+R(0,.4).toFixed(2)+'s;opacity:'+R(.85,1).toFixed(2)+'"><b style="background-image:url('+P()+')"></b></i>';
+    /* 大きな花びらが右から左へ一方通行で流れ、画面をおおう瞬間にホームへ切り替える */
+    var wl='',rows=Math.ceil((ch+120)/80),per=11;
+    for(var rw=0;rw<rows;rw++)for(var pc=0;pc<per;pc++){
+      var wz=R(190,270),wy=rw*80-90+R(-18,18),wdl=(pc+R(0,1))/per*1.5;
+      wl+='<i class="in-k" style="--s:'+wz.toFixed(0)+'px;--y:'+wy.toFixed(0)+'px;--sx:'+(cw+40)+'px;--ex:'+(-wz-120)+'px;--w:'+R(-50,50).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--rv:'+Math.floor(R(240,520)*(Math.random()<.5?-1:1))+'deg;--l:'+wdl.toFixed(2)+'s;opacity:'+R(.95,1).toFixed(2)+'"><b style="background-image:url('+P()+')"></b></i>';
     }
     af.innerHTML=wl+g;document.body.appendChild(af);
     setTimeout(function(){af.remove();st.remove()},9500);
     
-    /* 桜の壁で画面をおおい、その下でホームに切り替えて、風で散らして見せる(切り替えを見せない) */
-    setTimeout(function(){el.remove()},1350);
+    /* 流れる花びらの下でホームに切り替える(切り替えを見せない) */
+    setTimeout(function(){el.remove()},1700);
   }
   el.addEventListener('click',end);
   var sk=el.querySelector('.in-skip');
