@@ -462,3 +462,4 @@ body::before{content:"";position:fixed;left:0;right:0;top:0;bottom:0;z-index:-1;
 .credit dt{color:var(--ink-soft)}
 .credit dd{margin:0}
 @keyframes credit-in{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.credit dd a{color:var(--pink-deep);text-decoration:underline;text-underline-offset:2px}
