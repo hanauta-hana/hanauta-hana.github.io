@@ -14,7 +14,7 @@ function start(){
   var st=document.createElement('style');
   var M='radial-gradient(ellipse closest-side,#000 55%,rgba(0,0,0,0) 100%)';
   st.textContent=
-  '#intro{position:fixed;inset:0;z-index:9000;overflow:hidden;background:linear-gradient(170deg,#fde4ee,#f9c3da 50%,#fcd5e3);opacity:1;transition:opacity .9s ease;touch-action:manipulation}'+
+  '#intro{position:fixed;inset:0;z-index:9000;overflow:hidden;background:linear-gradient(170deg,#fde4ee,#f9c3da 50%,#fcd5e3);opacity:1;transition:opacity .5s ease;touch-action:manipulation}'+
   '#intro.out{opacity:0;pointer-events:none}'+
   '#intro .in-vp{position:absolute;inset:0;z-index:2;-webkit-mask-image:'+M+';mask-image:'+M+';-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:calc(var(--hx) - 190px) calc(var(--hy) - 45px);mask-position:calc(var(--hx) - 190px) calc(var(--hy) - 45px);-webkit-mask-size:380px 150px;mask-size:380px 150px;animation:in-mask 6s .9s both}'+
   '#intro .in-cam{position:absolute;left:0;top:5%;width:100%;height:88%;transform-origin:40% 18%;animation:in-cam 6s .9s both}'+
@@ -85,7 +85,7 @@ function start(){
   h+='<div class="in-msg">いらっしゃいませ、飼い主さん</div><div class="in-skip">タップでスキップ</div>';
   el.innerHTML=h;document.body.appendChild(el);
   var done=false;
-  function end(){if(done)return;done=true;el.classList.add('out');setTimeout(function(){el.remove();st.remove()},1000)}
+  function end(){if(done)return;done=true;el.classList.add('out');setTimeout(function(){el.remove();st.remove()},600)}
   el.addEventListener('click',end);
   var sk=el.querySelector('.in-skip');
   setTimeout(function(){if(done||!sk)return;sk.textContent='タップしてはじめる';sk.className='in-skip in-go'},6900);
