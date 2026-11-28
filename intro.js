@@ -29,10 +29,11 @@ function start(){
   '#intro .in-skip{position:absolute;z-index:5;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);text-align:center;font:700 12px "Zen Maru Gothic",sans-serif;color:#fff;text-shadow:0 1px 4px rgba(107,40,70,.6);opacity:0;animation:in-skip .6s .8s forwards}'+
   /* ふわっと落ちる花びら(背景側) */
   '#intro .in-p{position:absolute;top:-50px;left:0;z-index:1;width:var(--s);height:var(--s);opacity:0;animation:in-fall var(--d) var(--l) linear forwards}'+
-  '#intro b{display:block;width:100%;height:100%;background-size:contain;background-repeat:no-repeat;background-position:center;animation:in-flip var(--f) ease-in-out infinite alternate}'+
+  '#intro b,#intro-after b{display:block;width:100%;height:100%;background-size:contain;background-repeat:no-repeat;background-position:center;animation:in-flip var(--f) ease-in-out infinite alternate}'+
   /* 風で流れる花びら(手前) */
-  '#intro .in-w{position:absolute;top:0;left:0;z-index:4;width:var(--s);height:var(--s);opacity:0;animation:in-sweep var(--d) var(--l) cubic-bezier(.3,.1,.5,1) forwards}'+
+  '#intro .in-w,#intro-after .in-w{position:absolute;top:0;left:0;z-index:4;width:var(--s);height:var(--s);opacity:0;animation:in-sweep var(--d) var(--l) cubic-bezier(.3,.1,.5,1) forwards}'+
   /* ぱあっと広がる花びら */
+  '#intro-after{position:fixed;inset:0;z-index:9100;overflow:hidden;pointer-events:none}'+
   '#intro .in-b{position:absolute;left:50%;top:46%;z-index:4;width:var(--s);height:var(--s);margin:calc(var(--s)/-2) 0 0 calc(var(--s)/-2);opacity:0;animation:in-burst var(--d) var(--l) cubic-bezier(.1,.7,.3,1) forwards}'+
   '#intro .in-sp{position:absolute;z-index:3;width:var(--s);height:var(--s);background:#fff;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);opacity:0;filter:drop-shadow(0 0 4px #ffd1e6);animation:in-tw 1.4s var(--l) ease-in-out infinite}'+
 '#intro .in-gl{position:absolute;z-index:1;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,235,245,.55) 55%,rgba(255,255,255,0));opacity:0}'+
@@ -120,12 +121,15 @@ function start(){
   function end(){
     if(done)return;done=true;
     [].forEach.call(el.querySelectorAll('.in-logo,.in-msg,.in-skip,.in-gl,.in-sp,.in-c,.in-b,.in-p,.in-l'),function(n){n.style.transition='opacity .3s';n.style.animation='none';n.style.opacity='0'});
+    /* ホームの立ち絵になったあとも、しばらく桜吹雪を続けて、だんだん少なくする */
+    var af=document.createElement('div');af.id='intro-after';
     var g='';
-    for(var q=0;q<120;q++){
-      var s2=R(10,24),y0=R(-30,ch*.95);
-      g+='<i class="in-w" style="--s:'+s2.toFixed(0)+'px;--x0:'+(cw+70+R(0,80)).toFixed(0)+'px;--x1:'+(-80-R(0,120)).toFixed(0)+'px;--y0:'+y0.toFixed(0)+'px;--y1:'+(y0+R(-160,220)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+R(1.2,2.0).toFixed(2)+'s;--l:'+R(0,.7).toFixed(2)+'s"><b style="--f:'+R(.5,1.1).toFixed(2)+'s;background-image:url('+P()+')"></b></i>';
+    for(var q=0;q<260;q++){
+      var s2=R(10,26),y0=R(-30,ch*.95),dl=.4+Math.pow(Math.random(),1.25)*5.6;
+      g+='<i class="in-w" style="--s:'+s2.toFixed(0)+'px;--x0:'+(cw+70+R(0,80)).toFixed(0)+'px;--x1:'+(-80-R(0,120)).toFixed(0)+'px;--y0:'+y0.toFixed(0)+'px;--y1:'+(y0+R(-160,220)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+R(1.5,2.6).toFixed(2)+'s;--l:'+dl.toFixed(2)+'s"><b style="--f:'+R(.5,1.1).toFixed(2)+'s;background-image:url('+P()+')"></b></i>';
     }
-    el.insertAdjacentHTML('beforeend',g);
+    af.innerHTML=g;document.body.appendChild(af);
+    setTimeout(function(){af.remove();st.remove()},9500);
     var vp=el.querySelector('.in-img');if(vp){vp.style.animation='none';vp.style.opacity='1'}
     /* 風が右から左へ抜ける向きに、オープニングがほどけてホームが現れる */
     var mk='linear-gradient(90deg,#000 0%,#000 40%,rgba(0,0,0,0) 60%,rgba(0,0,0,0) 100%)';
@@ -135,7 +139,7 @@ function start(){
     el.style.webkitMaskPosition='0% 0';el.style.maskPosition='0% 0';
     el.getBoundingClientRect();
     var an=el.animate([{webkitMaskPosition:'0% 0',maskPosition:'0% 0'},{webkitMaskPosition:'100% 0',maskPosition:'100% 0'}],{duration:1100,delay:250,easing:'cubic-bezier(.45,0,.3,1)',fill:'forwards'});
-    setTimeout(function(){el.remove();st.remove()},1500);
+    setTimeout(function(){el.remove()},1500);
   }
   el.addEventListener('click',end);
   var sk=el.querySelector('.in-skip');
