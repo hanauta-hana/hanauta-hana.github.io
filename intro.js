@@ -62,6 +62,17 @@ function start(){
   '@keyframes in-sweep{0%{opacity:0;transform:translate3d(var(--x0),var(--y0),0) rotate(var(--r0))}14%{opacity:.95}80%{opacity:.95}100%{opacity:0;transform:translate3d(var(--x1),var(--y1),0) rotate(calc(var(--r0) + 540deg))}}'+
   '@keyframes in-burst{0%{opacity:0;transform:translate(0,0) scale(.2) rotate(0)}15%{opacity:1}100%{opacity:0;transform:translate(var(--bx),var(--by)) scale(1.1) rotate(var(--br))}}';
   document.head.appendChild(st);
+  /* 画像を読み込み終わるまで、ホームを見せずにピンクの幕だけ出しておく(最初の一瞬の乱れを防ぐ) */
+  var pre=document.createElement('div');pre.id='intro-pre';
+  pre.style.cssText='position:fixed;inset:0;z-index:9000;background:linear-gradient(170deg,#fde4ee,#f9c3da 50%,#fcd5e3)';
+  document.body.appendChild(pre);
+  var srcs=['img/outfit-kimono.webp','img/logo.png'];
+  for(var pi=0;pi<8;pi++){srcs.push('img/petal/p'+pi+'.png');for(var pv=0;pv<4;pv++)srcs.push('img/petal/c'+pi+'abcd'.charAt(pv)+'.png')}
+  var left=srcs.length,built=false;
+  function go(){if(built)return;built=true;build()}
+  srcs.forEach(function(u){var im=new Image();im.onload=im.onerror=function(){if(--left<=0)go()};im.src=u});
+  setTimeout(go,1800);
+  function build(){
   var el=document.createElement('div');el.id='intro';el.setAttribute('aria-hidden','true');
   var iw=Math.min(Math.max(window.innerWidth,320),.88*Math.max(window.innerHeight,600)*760/1614),cw=Math.max(window.innerWidth,320),ch=Math.max(window.innerHeight,600);
   var hi0=document.querySelector('.hero-img>img:first-child'),hr0=hi0&&hi0.getBoundingClientRect(),ok0=!!hr0&&hr0.width>50&&hr0.bottom>60&&hr0.top<ch;
@@ -152,6 +163,8 @@ function start(){
   el.addEventListener('click',end);
   var sk=el.querySelector('.in-skip');
   setTimeout(function(){if(done||!sk)return;sk.textContent='タップしてはじめる';sk.className='in-skip in-go'},6900);
+  pre.remove();
+  }
 }
 if(root.classList.contains('locked'))window.addEventListener('hana-unlock',start,{once:true});
 else if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);
