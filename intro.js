@@ -20,7 +20,12 @@ function start(){
   '#intro .in-cam{position:absolute;left:0;top:5%;width:100%;height:88%;transform-origin:40% 18%;animation:in-cam 6s .9s both}'+
   '#intro .in-img{display:block;width:100%;height:100%;object-fit:contain;opacity:0;filter:drop-shadow(0 6px 14px rgba(160,50,100,.35));animation:in-rise .5s 1.1s ease-out forwards}'+
   '#intro .in-logo{position:absolute;z-index:3;top:calc(env(safe-area-inset-top,0px) + 14px);right:4%;width:40%;height:auto;opacity:0;transform:scale(.6) rotate(-6deg);animation:in-pop .8s 5.9s cubic-bezier(.2,1.5,.4,1) forwards;filter:drop-shadow(0 2px 6px rgba(107,40,70,.45))}'+
-  '#intro .in-msg{position:absolute;z-index:3;left:50%;top:50%;margin-top:-14px;transform:translateX(-50%) scale(.5);white-space:nowrap;color:#fff;font:400 20px "Hachi Maru Pop","Zen Maru Gothic",sans-serif;text-shadow:0 0 3px #e0709f,0 0 3px #e0709f,0 0 4px #e0709f,0 0 7px #e0709f,0 2px 8px rgba(160,50,100,.7);letter-spacing:.04em;opacity:0;animation:in-msg .7s 6.2s cubic-bezier(.2,1.6,.4,1) forwards}'+
+  '#intro .in-msg{position:absolute;z-index:3;left:0;right:0;top:26%;display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none}'+
+  '#intro .in-msg .tx{white-space:nowrap;color:#fff;font:500 17px "Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;letter-spacing:.2em;text-shadow:0 0 6px rgba(224,112,159,.95),0 0 12px rgba(224,112,159,.7),0 1px 10px rgba(160,50,100,.6)}'+
+  '#intro .in-msg .tx span{display:inline-block;opacity:0;transform:translateY(8px);filter:blur(5px);animation:in-ch .8s ease-out forwards}'+
+  '#intro .in-msg .ln{width:0;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff,rgba(255,255,255,0));box-shadow:0 0 6px rgba(224,112,159,.9);animation:in-ln 1s 5.9s ease-out forwards}'+
+  '@keyframes in-ch{to{opacity:1;transform:none;filter:blur(0)}}'+
+  '@keyframes in-ln{to{width:min(240px,64vw)}}'+
   '#intro .in-skip{position:absolute;z-index:5;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);text-align:center;font:700 12px "Zen Maru Gothic",sans-serif;color:#fff;text-shadow:0 1px 4px rgba(107,40,70,.6);opacity:0;animation:in-skip .6s .8s forwards}'+
   /* ふわっと落ちる花びら(背景側) */
   '#intro .in-p{position:absolute;top:-50px;left:0;z-index:1;width:var(--s);height:var(--s);opacity:0;filter:saturate(.8) drop-shadow(0 0 3px rgba(228,134,174,.6));animation:in-fall var(--d) var(--l) linear forwards}'+
@@ -61,30 +66,26 @@ function start(){
   h+='<div class="in-gl" style="left:'+(cw/2-290)+'px;top:'+(midY-TH*.75)+'px;width:580px;height:'+(TH*1.5)+'px;animation:in-gl 2.5s .9s both"></div>';
   h+='<div class="in-gl" style="left:'+(cw/2-290)+'px;top:'+(botY-TH*.75)+'px;width:580px;height:'+(TH*1.5)+'px;animation:in-gl 2.3s 3.3s both"></div>';
   h+='<div class="in-gl" style="left:'+(cw/2-290)+'px;top:'+(topY-TH*.75)+'px;width:580px;height:'+(TH*1.5)+'px;animation:in-gl 2.3s 4.6s both"></div>';
-  [[cw/2,midY,190,1,.45,1.0,2.4],[cw/2,botY,190,1,.45,3.2,2.0],[cw/2,topY,190,1,.45,4.6,2.0]].forEach(function(o){
-    for(var k=0;k<16;k++){
-      h+='<div class="in-or" style="left:'+o[0].toFixed(0)+'px;top:'+o[1].toFixed(0)+'px;--sx:'+o[3]+';--sy:'+o[4]+';--d:'+(o[6]+R(0,.8)).toFixed(2)+'s;--l:'+(o[5]+R(0,.5)).toFixed(2)+'s;transform:rotate('+(k*22.5)+'deg)"><i style="--r:'+(o[2]*R(.85,1.2)).toFixed(0)+'px;--s:'+R(26,42).toFixed(0)+'px;--l:'+(o[5]).toFixed(2)+'s;--d:'+(o[6]+.8).toFixed(2)+'s"><b style="--f:'+R(.6,1.2).toFixed(2)+'s;background-image:url('+P()+')"></b></i></div>';
-    }
-  });
   /* ゆるく落ちる花びら */
   for(var i=0;i<40;i++){
     var x0=R(0,W);
-    h+='<i class="in-p" style="--s:'+R(14,30).toFixed(0)+'px;--x0:'+x0.toFixed(0)+'px;--x1:'+(x0+R(-90,90)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+R(2.8,4.4).toFixed(2)+'s;--l:'+R(0,5.2).toFixed(2)+'s;--f:'+R(.9,2.1).toFixed(2)+'s"><b style="background-image:url('+P()+')"></b></i>';
+    h+='<i class="in-p" style="--s:'+R(10,20).toFixed(0)+'px;--x0:'+x0.toFixed(0)+'px;--x1:'+(x0+R(-90,90)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+R(2.8,4.4).toFixed(2)+'s;--l:'+R(0,5.2).toFixed(2)+'s;--f:'+R(.9,2.1).toFixed(2)+'s"><b style="background-image:url('+P()+')"></b></i>';
   }
   /* 風で流れる花びら(桜吹雪): [開始秒, 本数, 向き(1=右へ,-1=左へ), 継続秒] */
   [[0.15,70,1,1.5],[2.0,80,-1,1.5],[4.3,110,1,1.9]].forEach(function(g){
     for(var q=0;q<g[1];q++){
-      var s=R(16,40),xs=g[2]>0?-70-R(0,80):W+70+R(0,80),xe=g[2]>0?W+70+R(0,120):-70-R(0,120),y0=R(-30,H*.95);
+      var s=R(10,22),xs=g[2]>0?-70-R(0,80):W+70+R(0,80),xe=g[2]>0?W+70+R(0,120):-70-R(0,120),y0=R(-30,H*.95);
       h+='<i class="in-w" style="--s:'+s.toFixed(0)+'px;--x0:'+xs.toFixed(0)+'px;--x1:'+xe.toFixed(0)+'px;--y0:'+y0.toFixed(0)+'px;--y1:'+(y0+R(-200,260)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+R(g[3]*.8,g[3]*1.4).toFixed(2)+'s;--l:'+(g[0]+R(0,g[3]*.6)).toFixed(2)+'s"><b style="--f:'+R(.5,1.2).toFixed(2)+'s;background-image:url('+P()+')"></b></i>';
     }
   });
   /* 全身が現れる時にぱあっと広がる */
-  for(var u=0;u<50;u++){
+  for(var u=0;u<36;u++){
     var a=R(0,Math.PI*2),d=Math.max(W,H)*R(.35,.95);
-    h+='<i class="in-b" style="--s:'+R(16,40).toFixed(0)+'px;--bx:'+(Math.cos(a)*d).toFixed(0)+'px;--by:'+(Math.sin(a)*d*.9-40).toFixed(0)+'px;--br:'+Math.floor(R(240,600))+'deg;--d:'+R(1.6,2.6).toFixed(2)+'s;--l:'+R(5.0,5.4).toFixed(2)+'s"><b style="background-image:url('+P()+')"></b></i>';
+    h+='<i class="in-b" style="--s:'+R(10,22).toFixed(0)+'px;--bx:'+(Math.cos(a)*d).toFixed(0)+'px;--by:'+(Math.sin(a)*d*.9-40).toFixed(0)+'px;--br:'+Math.floor(R(240,600))+'deg;--d:'+R(1.6,2.6).toFixed(2)+'s;--l:'+R(5.0,5.4).toFixed(2)+'s"><b style="background-image:url('+P()+')"></b></i>';
   }
   for(var j=0;j<16;j++){h+='<i class="in-sp" style="--s:'+R(8,22).toFixed(0)+'px;left:'+R(0,96).toFixed(0)+'%;top:'+R(0,85).toFixed(0)+'%;--l:'+R(4,6.5).toFixed(2)+'s"></i>'}
-  h+='<div class="in-msg">いらっしゃいませ、飼い主さん</div><div class="in-skip">タップでスキップ</div>';
+  var T="いらっしゃいませ、飼い主さん",tx="";for(var c=0;c<T.length;c++)tx+='<span style="animation-delay:'+(6.0+c*.09).toFixed(2)+'s">'+T.charAt(c)+'</span>';
+  h+='<div class="in-msg"><i class="ln"></i><div class="tx">'+tx+'</div><i class="ln"></i></div><div class="in-skip">タップでスキップ</div>';
   el.innerHTML=h;document.body.appendChild(el);
   var done=false;
   function end(){if(done)return;done=true;el.classList.add('out');setTimeout(function(){el.remove();st.remove()},600)}
