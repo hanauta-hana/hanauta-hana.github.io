@@ -447,3 +447,7 @@ body::before{content:"";position:fixed;left:0;right:0;top:0;bottom:0;z-index:-1;
    全体を変えるときは、下の1行の対象に html,body,button,input,textarea,select を足す */
 :root{--font-cute:'Hachi Maru Pop','Zen Maru Gothic','Hiragino Maru Gothic ProN','Yu Gothic',sans-serif}
 .h,.catch,.rank,.serif{font-family:var(--font-cute);font-synthesis:none}
+
+/* 拡大表示: 頭がステータスバーに隠れないよう上下に余白 */
+.lightbox{padding:calc(env(safe-area-inset-top,0px) + 56px) 16px calc(env(safe-area-inset-bottom,0px) + 32px)}
+.lightbox img{max-height:100%}
