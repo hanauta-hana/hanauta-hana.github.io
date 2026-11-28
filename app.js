@@ -277,7 +277,7 @@ window.hanaFx=(function(){var l=null;return function(){if(!l){l=document.createE
   if(window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches)return;
   var last=0;
   document.addEventListener('pointerdown',function(e){
-    if(document.getElementById('intro'))return;
+    if(document.getElementById('intro')||document.getElementById('gate'))return;
     var now=Date.now(); if(now-last<120)return; last=now;
     var n=9;
     for(var i=0;i<n;i++){
