@@ -106,7 +106,15 @@ function start(){
   h+='<div class="in-msg"><i class="ln"></i><div class="tx">'+tx+'</div><i class="ln"></i></div><div class="in-skip">タップでスキップ</div>';
   el.innerHTML=h;document.body.appendChild(el);
   /* 立ち絵は最初からホームの立ち絵と同じ位置・同じ大きさに置き、毎フレーム追従(重なりは構造上ずれない) */
-  var cam=el.querySelector('.in-cam'),hiE=document.querySelector('.hero-img>img:first-child');
+  var cam=el.querySelector('.in-cam'),imgE=el.querySelector('.in-img'),hiE=document.querySelector('.hero-img');
+  /* ホームの立ち絵と同じ「ゆっくりズーム」を、同じ進み具合で動かす(位置の読み取りに頼らない) */
+  try{
+    var hz=document.querySelector('.hero-img>img:first-child'),ha=hz&&hz.getAnimations&&hz.getAnimations().filter(function(a){return a.animationName==='hero-zoom'})[0];
+    if(ha&&ha.currentTime!=null){
+      imgE.style.transformOrigin='48.7% 11.2%';
+      imgE.style.animation='in-rise .6s .3s ease-out forwards,hero-zoom 14s ease-in-out '+(-Math.round(ha.currentTime))+'ms infinite alternate';
+    }
+  }catch(e){}
   function sync(){
     if(!cam.isConnected)return;
     var q=hiE&&hiE.getBoundingClientRect(),x,y,w,hh;
@@ -130,7 +138,7 @@ function start(){
     }
     af.innerHTML=g;document.body.appendChild(af);
     setTimeout(function(){af.remove();st.remove()},9500);
-    var vp=el.querySelector('.in-img');if(vp){vp.style.animation='none';vp.style.opacity='1'}
+    
     /* 風が右から左へ抜ける向きに、オープニングがほどけてホームが現れる */
     var mk='linear-gradient(90deg,#000 0%,#000 40%,rgba(0,0,0,0) 60%,rgba(0,0,0,0) 100%)';
     el.style.webkitMaskImage=mk;el.style.maskImage=mk;
