@@ -33,6 +33,9 @@ function start(){
   /* 風で流れる花びら(手前) */
   '#intro .in-w,#intro-after .in-w{position:absolute;top:0;left:0;z-index:4;width:var(--s);height:var(--s);opacity:0;animation:in-sweep var(--d) var(--l) cubic-bezier(.3,.1,.5,1) forwards}'+
   /* ぱあっと広がる花びら */
+  '#intro-after .in-k{position:absolute;left:0;top:0;width:var(--s);height:var(--s);animation:in-wall var(--d) var(--l) cubic-bezier(.4,0,.6,1) both}'+
+  '#intro-after .in-k b{animation:none}'+
+  '@keyframes in-wall{0%{transform:translate(calc(var(--x) + 120vw),var(--y)) rotate(var(--r0));opacity:0}22%{transform:translate(var(--x),var(--y)) rotate(calc(var(--r0) + 120deg));opacity:1}55%{transform:translate(var(--x),var(--y)) rotate(calc(var(--r0) + 120deg));opacity:1}100%{transform:translate(calc(var(--x) + var(--cx)),calc(var(--y) + var(--cy))) rotate(calc(var(--r0) + 560deg));opacity:0}}'+
   '#intro-after{position:fixed;inset:0;z-index:9100;overflow:hidden;pointer-events:none}'+
   '#intro .in-b{position:absolute;left:50%;top:46%;z-index:4;width:var(--s);height:var(--s);margin:calc(var(--s)/-2) 0 0 calc(var(--s)/-2);opacity:0;animation:in-burst var(--d) var(--l) cubic-bezier(.1,.7,.3,1) forwards}'+
   '#intro .in-sp{position:absolute;z-index:3;width:var(--s);height:var(--s);background:#fff;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);opacity:0;filter:drop-shadow(0 0 4px #ffd1e6);animation:in-tw 1.4s var(--l) ease-in-out infinite}'+
@@ -147,18 +150,17 @@ function start(){
       var s2=R(10,26),y0=R(-30,ch*.95),dl=.4+Math.pow(Math.random(),1.25)*5.6;
       g+='<i class="in-w" style="--s:'+s2.toFixed(0)+'px;--x0:'+(cw+70+R(0,80)).toFixed(0)+'px;--x1:'+(-80-R(0,120)).toFixed(0)+'px;--y0:'+y0.toFixed(0)+'px;--y1:'+(y0+R(-160,220)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+R(1.5,2.6).toFixed(2)+'s;--l:'+dl.toFixed(2)+'s"><b style="--f:'+R(.5,1.1).toFixed(2)+'s;background-image:url('+P()+')"></b></i>';
     }
-    af.innerHTML=g;document.body.appendChild(af);
+    var wl='';
+    for(var wn=0;wn<300;wn++){
+      var wz=R(80,140),wx=R(-30,cw-20),wy=R(-30,ch-30),wc=wy+wz/2,wb=(wc<T0+TH*2&&wc>T0+TH)?0:(wc>=T0+TH*2?1:2),
+          wd=[2.7,3.2,3.7][wb]+R(0,.25);
+      wl+='<i class="in-k" style="--s:'+wz.toFixed(0)+'px;--x:'+wx.toFixed(0)+'px;--y:'+wy.toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--cx:'+(cw*R(.7,1.3)+120).toFixed(0)+'px;--cy:'+R(-260,160).toFixed(0)+'px;--d:'+wd.toFixed(2)+'s;--l:'+R(0,.4).toFixed(2)+'s;opacity:'+R(.85,1).toFixed(2)+'"><b style="background-image:url('+P()+')"></b></i>';
+    }
+    af.innerHTML=wl+g;document.body.appendChild(af);
     setTimeout(function(){af.remove();st.remove()},9500);
     
-    /* 風が右から左へ抜ける向きに、オープニングがほどけてホームが現れる */
-    var mk='linear-gradient(90deg,#000 0%,#000 40%,rgba(0,0,0,0) 60%,rgba(0,0,0,0) 100%)';
-    el.style.webkitMaskImage=mk;el.style.maskImage=mk;
-    el.style.webkitMaskRepeat='no-repeat';el.style.maskRepeat='no-repeat';
-    el.style.webkitMaskSize='300% 100%';el.style.maskSize='300% 100%';
-    el.style.webkitMaskPosition='0% 0';el.style.maskPosition='0% 0';
-    el.getBoundingClientRect();
-    var an=el.animate([{webkitMaskPosition:'0% 0',maskPosition:'0% 0'},{webkitMaskPosition:'100% 0',maskPosition:'100% 0'}],{duration:1100,delay:250,easing:'cubic-bezier(.45,0,.3,1)',fill:'forwards'});
-    setTimeout(function(){el.remove()},1500);
+    /* 桜の壁で画面をおおい、その下でホームに切り替えて、風で散らして見せる(切り替えを見せない) */
+    setTimeout(function(){el.remove()},1350);
   }
   el.addEventListener('click',end);
   var sk=el.querySelector('.in-skip');
