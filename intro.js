@@ -97,7 +97,7 @@ function start(){
     var bw=cw,bh=.88*ch,sc=Math.min(bw/760,bh/1614),sw=760*sc,sh=1614*sc,sx=(bw-sw)/2,sy=.05*ch+(bh-sh)/2;
     var tx=r.left+85/900*r.width,ty=r.top+8/1600*r.height,tw=750/900*r.width,th=1593/1600*r.height;
     var f=document.createElement('img');f.src='img/outfit-kimono.webp';f.alt='';
-    f.style.cssText='position:absolute;z-index:3;left:'+sx+'px;top:'+sy+'px;width:'+sw+'px;height:'+sh+'px;filter:drop-shadow(0 6px 14px rgba(160,50,100,.35));transition:left .95s cubic-bezier(.65,0,.2,1),top .95s cubic-bezier(.65,0,.2,1),width .95s cubic-bezier(.65,0,.2,1),height .95s cubic-bezier(.65,0,.2,1),opacity .35s ease';
+    f.style.cssText='position:absolute;z-index:3;left:0;top:0;transform-origin:0 0;filter:drop-shadow(0 6px 14px rgba(160,50,100,.35));transition:opacity .35s ease;will-change:transform';
     el.appendChild(f);
     var vp=el.querySelector('.in-vp');if(vp)vp.style.visibility='hidden';
     [].forEach.call(el.querySelectorAll('.in-logo,.in-msg,.in-skip,.in-gl,.in-sp'),function(n){n.style.transition='opacity .3s';n.style.animation='none';n.style.opacity='0'});
@@ -108,8 +108,17 @@ function start(){
     }
     el.insertAdjacentHTML('beforeend',g);
     el.style.transition='background-color .5s .5s';el.style.background='transparent';
-    f.getBoundingClientRect();
-    f.style.left=tx+'px';f.style.top=ty+'px';f.style.width=tw+'px';f.style.height=th+'px';
+    function tgt(){var q=hi.getBoundingClientRect();return {x:q.left+89/900*q.width,y:q.top+16/1600*q.height,w:741/900*q.width,h:1574/1600*q.height}}
+    var t0=performance.now(),DUR=950;
+    function place(x,y,w,h){f.style.width=w+'px';f.style.height=h+'px';f.style.transform='translate('+x+'px,'+y+'px)'}
+    function ease(p){return p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2}
+    function step(now){
+      var p=Math.min(1,(now-t0)/DUR),e=ease(p),T=tgt();
+      place(sx+(T.x-sx)*e,sy+(T.y-sy)*e,sw+(T.w-sw)*e,sh+(T.h-sh)*e);
+      if(p<1)requestAnimationFrame(step);else{var live=function(){if(!f.isConnected)return;var T2=tgt();place(T2.x,T2.y,T2.w,T2.h);requestAnimationFrame(live)};live()}
+    }
+    place(sx,sy,sw,sh);requestAnimationFrame(step);
+    el.style.transition='background-color .5s .5s';el.style.background='transparent';
     setTimeout(function(){f.style.opacity='0'},950);
     setTimeout(function(){el.style.transition='opacity .4s';el.style.opacity='0'},1500);
     setTimeout(function(){el.remove();st.remove()},2000);
