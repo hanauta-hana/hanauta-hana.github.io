@@ -127,8 +127,15 @@ function start(){
     }
     el.insertAdjacentHTML('beforeend',g);
     var vp=el.querySelector('.in-img');if(vp){vp.style.animation='none';vp.style.opacity='1'}
-    setTimeout(function(){el.style.transition='opacity .7s ease';el.style.opacity='0'},450);
-    setTimeout(function(){el.remove();st.remove()},1300);
+    /* 風が右から左へ抜ける向きに、オープニングがほどけてホームが現れる */
+    var mk='linear-gradient(90deg,#000 0%,#000 40%,rgba(0,0,0,0) 60%,rgba(0,0,0,0) 100%)';
+    el.style.webkitMaskImage=mk;el.style.maskImage=mk;
+    el.style.webkitMaskRepeat='no-repeat';el.style.maskRepeat='no-repeat';
+    el.style.webkitMaskSize='300% 100%';el.style.maskSize='300% 100%';
+    el.style.webkitMaskPosition='0% 0';el.style.maskPosition='0% 0';
+    el.getBoundingClientRect();
+    var an=el.animate([{webkitMaskPosition:'0% 0',maskPosition:'0% 0'},{webkitMaskPosition:'100% 0',maskPosition:'100% 0'}],{duration:1100,delay:250,easing:'cubic-bezier(.45,0,.3,1)',fill:'forwards'});
+    setTimeout(function(){el.remove();st.remove()},1500);
   }
   el.addEventListener('click',end);
   var sk=el.querySelector('.in-skip');
