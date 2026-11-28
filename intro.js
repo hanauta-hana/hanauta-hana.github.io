@@ -153,10 +153,10 @@ function start(){
       g+='<i class="in-w" style="--s:'+s2.toFixed(0)+'px;--x0:'+(cw+70+R(0,80)).toFixed(0)+'px;--x1:'+(-80-R(0,120)).toFixed(0)+'px;--y0:'+y0.toFixed(0)+'px;--y1:'+(y0+R(-160,220)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+R(1.5,2.6).toFixed(2)+'s;--l:'+dl.toFixed(2)+'s"><b style="--f:'+R(.5,1.1).toFixed(2)+'s;background-image:url('+P()+')"></b></i>';
     }
     /* 大きな花びらが右から左へ一方通行で流れ、画面をおおう瞬間にホームへ切り替える */
-    var wl='',rows=Math.ceil((ch+120)/80),per=11;
+    var wl='',rows=Math.ceil((ch+120)/68),per=12;
     for(var rw=0;rw<rows;rw++)for(var pc=0;pc<per;pc++){
-      var wz=R(190,270),wy=rw*80-90+R(-18,18),wdl=(pc+R(0,1))/per*1.5;
-      wl+='<i class="in-k" style="--s:'+wz.toFixed(0)+'px;--y:'+wy.toFixed(0)+'px;--sx:'+(cw+40)+'px;--ex:'+(-wz-120)+'px;--w:'+R(-50,50).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--rv:'+Math.floor(R(240,520)*(Math.random()<.5?-1:1))+'deg;--l:'+wdl.toFixed(2)+'s;opacity:'+R(.95,1).toFixed(2)+'"><b style="background-image:url('+P()+')"></b></i>';
+      var wz=R(140,200),wy=rw*68-90+R(-14,14),wdl=(pc+R(0,1))/per*1.5;
+      wl+='<i class="in-k" style="--s:'+wz.toFixed(0)+'px;--y:'+wy.toFixed(0)+'px;--sx:'+(cw+40)+'px;--ex:'+(-wz-120)+'px;--w:'+R(-50,50).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--rv:'+Math.floor(R(240,520)*(Math.random()<.5?-1:1))+'deg;--l:'+wdl.toFixed(2)+'s;opacity:1"><b style="background-image:url(img/petal/p'+Math.floor(Math.random()*8)+'.png)"></b></i>';
     }
     af.innerHTML=wl+g;document.body.appendChild(af);
     setTimeout(function(){af.remove();st.remove()},9500);
