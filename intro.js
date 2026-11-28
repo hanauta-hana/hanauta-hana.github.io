@@ -102,7 +102,7 @@ function start(){
     h+='<i class="in-l" style="--s:'+ls.toFixed(0)+'px;--x0:'+(lr?-70-R(0,60):cw+70+R(0,60)).toFixed(0)+'px;--x1:'+(lr?cw+90+R(0,120):-90-R(0,120)).toFixed(0)+'px;--y0:'+ly.toFixed(0)+'px;--y1:'+(ly+R(-120,240)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+ld.toFixed(2)+'s;--l:'+(5.6+R(0,ld)).toFixed(2)+'s"><b style="--f:'+R(.6,1.4).toFixed(2)+'s;background-image:url('+P()+')"></b></i>';
   }
   for(var j=0;j<16;j++){h+='<i class="in-sp" style="--s:'+R(8,22).toFixed(0)+'px;left:'+R(0,96).toFixed(0)+'%;top:'+R(0,85).toFixed(0)+'%;--l:'+R(4,6.5).toFixed(2)+'s"></i>'}
-  var T="いらっしゃいませ、飼い主さん",tx="";for(var c=0;c<T.length;c++)tx+='<span style="animation-delay:'+(6.0+c*.09).toFixed(2)+'s">'+T.charAt(c)+'</span>';
+  var LN=["おかえりなさい","今日もお疲れ様","いらっしゃい","いつもありがとう"],T=LN[Math.floor(Math.random()*LN.length)],tx="";for(var c=0;c<T.length;c++)tx+='<span style="animation-delay:'+(6.0+c*.09).toFixed(2)+'s">'+T.charAt(c)+'</span>';
   h+='<div class="in-msg"><i class="ln"></i><div class="tx">'+tx+'</div><i class="ln"></i></div><div class="in-skip">タップでスキップ</div>';
   el.innerHTML=h;document.body.appendChild(el);
   /* 立ち絵は最初からホームの立ち絵と同じ位置・同じ大きさに置き、毎フレーム追従(重なりは構造上ずれない) */
