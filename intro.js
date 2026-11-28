@@ -20,7 +20,7 @@ function start(){
   '#intro .in-cam{position:absolute;left:0;top:5%;width:100%;height:88%;transform-origin:40% 18%;animation:in-cam 6s .9s both}'+
   '#intro .in-img{display:block;width:100%;height:100%;object-fit:contain;opacity:0;filter:drop-shadow(0 6px 14px rgba(160,50,100,.35));animation:in-rise .5s 1.1s ease-out forwards}'+
   '#intro .in-logo{position:absolute;z-index:3;top:calc(env(safe-area-inset-top,0px) + 14px);right:4%;width:40%;height:auto;opacity:0;transform:scale(.6) rotate(-6deg);animation:in-pop .8s 5.9s cubic-bezier(.2,1.5,.4,1) forwards;filter:drop-shadow(0 2px 6px rgba(107,40,70,.45))}'+
-  '#intro .in-msg{position:absolute;z-index:3;left:0;right:0;top:26%;display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none}'+
+  '#intro .in-msg{position:absolute;z-index:3;left:0;right:0;top:37%;display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none}'+
   '#intro .in-msg .tx{white-space:nowrap;color:#fff;font:500 17px "Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;letter-spacing:.2em;text-shadow:0 0 6px rgba(224,112,159,.95),0 0 12px rgba(224,112,159,.7),0 1px 10px rgba(160,50,100,.6)}'+
   '#intro .in-msg .tx span{display:inline-block;opacity:0;transform:translateY(8px);filter:blur(5px);animation:in-ch .8s ease-out forwards}'+
   '#intro .in-msg .ln{width:0;height:1px;background:linear-gradient(90deg,rgba(255,255,255,0),#fff,rgba(255,255,255,0));box-shadow:0 0 6px rgba(224,112,159,.9);animation:in-ln 1s 5.9s ease-out forwards}'+
