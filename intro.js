@@ -88,10 +88,12 @@ function start(){
   h+='<div class="in-gl" style="left:'+(cw/2-290)+'px;top:'+(botY-TH*.75)+'px;width:580px;height:'+(TH*1.5)+'px;animation:in-gl 2.3s 3.3s both"></div>';
   h+='<div class="in-gl" style="left:'+(cw/2-290)+'px;top:'+(topY-TH*.75)+'px;width:580px;height:'+(TH*1.5)+'px;animation:in-gl 2.3s 4.6s both"></div>';
   /* 一面の桜でおおいかくす → 真ん中・下・上の順に風で散って、イラストが見える */
-  for(var cn=0;cn<320;cn++){
-    var cs=R(80,140),cx0=R(-30,cw-20),cy0=R(-30,ch-30),cband=(cy0+cs/2<T0+TH*2&&cy0+cs/2>T0+TH)?0:(cy0+cs/2>=T0+TH*2?1:2),
+  var cg=[],gs=50;
+  for(var gx=-30;gx<cw;gx+=gs)for(var gy=-30;gy<ch;gy+=gs)cg.push([gx+R(-12,12),gy+R(-12,12)]);
+  for(var cn=0;cn<cg.length+170;cn++){
+    var gp=cg[cn],cs=gp?R(100,140):R(80,140),cx0=gp?gp[0]:R(-30,cw-20),cy0=gp?gp[1]:R(-30,ch-30),cband=(cy0+cs/2<T0+TH*2&&cy0+cs/2>T0+TH)?0:(cy0+cs/2>=T0+TH*2?1:2),
         ctm=cband===0?R(1.6,3.2):(cband===1?R(3.2,4.7):R(4.7,6.2));
-    h+='<i class="in-c" style="--s:'+cs.toFixed(0)+'px;--x:'+cx0.toFixed(0)+'px;--y:'+cy0.toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--cx:'+(cw*R(.7,1.3)+120).toFixed(0)+'px;--cy:'+R(-260,160).toFixed(0)+'px;--l:'+ctm.toFixed(2)+'s;--f:'+R(1.4,3).toFixed(2)+'s;opacity:'+R(.82,1).toFixed(2)+'"><b style="background-image:url('+P()+')"></b></i>';
+    h+='<i class="in-c" style="--s:'+cs.toFixed(0)+'px;--x:'+cx0.toFixed(0)+'px;--y:'+cy0.toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--cx:'+(cw*R(.7,1.3)+120).toFixed(0)+'px;--cy:'+R(-260,160).toFixed(0)+'px;--l:'+ctm.toFixed(2)+'s;--f:'+R(1.4,3).toFixed(2)+'s;opacity:'+R(.94,1).toFixed(2)+'"><b style="background-image:url('+P()+')"></b></i>';
   }
   /* ゆるく落ちる花びら */
   for(var i=0;i<40;i++){
