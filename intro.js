@@ -42,6 +42,7 @@ function start(){
   '@keyframes in-orbit{0%{opacity:0;transform:rotate(0) scale(var(--sx),var(--sy))}12%{opacity:1}85%{opacity:1}100%{opacity:0;transform:rotate(540deg) scale(var(--sx),var(--sy))}}'+
   '@keyframes in-ccw{to{transform:rotate(-540deg)}}'+
   '#intro .in-c b{animation:none}'+
+  '#intro .in-l{position:absolute;top:0;left:0;z-index:4;width:var(--s);height:var(--s);opacity:0;animation:in-sweep var(--d) var(--l) linear infinite}'+
   '#intro .in-vp{-webkit-mask:none;mask:none;animation:none}'+
   '#intro .in-c{position:absolute;z-index:4;left:0;top:0;width:var(--s);height:var(--s);animation:in-clear 1.2s var(--l) cubic-bezier(.5,0,.8,.4) both}'+
   '@keyframes in-clear{0%{transform:translate(var(--x),var(--y)) rotate(var(--r0));opacity:1}100%{transform:translate(calc(var(--x) + var(--cx)),calc(var(--y) + var(--cy))) rotate(calc(var(--r0) + 560deg));opacity:0}}'+
@@ -94,6 +95,11 @@ function start(){
     var a=R(0,Math.PI*2),d=Math.max(W,H)*R(.35,.95);
     h+='<i class="in-b" style="--s:'+R(10,22).toFixed(0)+'px;--bx:'+(Math.cos(a)*d).toFixed(0)+'px;--by:'+(Math.sin(a)*d*.9-40).toFixed(0)+'px;--br:'+Math.floor(R(240,600))+'deg;--d:'+R(1.6,2.6).toFixed(2)+'s;--l:'+R(5.0,5.4).toFixed(2)+'s"><b style="background-image:url('+P()+')"></b></i>';
   }
+  /* 立ち絵が全身そろったあとも、タップするまで桜吹雪を続ける */
+  for(var lp=0;lp<150;lp++){
+    var ls=R(10,26),ly=R(-40,ch*.95),ld=R(2.0,3.4),lr=Math.random()<.5;
+    h+='<i class="in-l" style="--s:'+ls.toFixed(0)+'px;--x0:'+(lr?-70-R(0,60):cw+70+R(0,60)).toFixed(0)+'px;--x1:'+(lr?cw+90+R(0,120):-90-R(0,120)).toFixed(0)+'px;--y0:'+ly.toFixed(0)+'px;--y1:'+(ly+R(-120,240)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+ld.toFixed(2)+'s;--l:'+(5.6+R(0,ld)).toFixed(2)+'s"><b style="--f:'+R(.6,1.4).toFixed(2)+'s;background-image:url('+P()+')"></b></i>';
+  }
   for(var j=0;j<16;j++){h+='<i class="in-sp" style="--s:'+R(8,22).toFixed(0)+'px;left:'+R(0,96).toFixed(0)+'%;top:'+R(0,85).toFixed(0)+'%;--l:'+R(4,6.5).toFixed(2)+'s"></i>'}
   var T="いらっしゃいませ、飼い主さん",tx="";for(var c=0;c<T.length;c++)tx+='<span style="animation-delay:'+(6.0+c*.09).toFixed(2)+'s">'+T.charAt(c)+'</span>';
   h+='<div class="in-msg"><i class="ln"></i><div class="tx">'+tx+'</div><i class="ln"></i></div><div class="in-skip">タップでスキップ</div>';
@@ -113,7 +119,7 @@ function start(){
   function plain(){el.classList.add('out');setTimeout(function(){el.remove();st.remove()},600)}
   function end(){
     if(done)return;done=true;
-    [].forEach.call(el.querySelectorAll('.in-logo,.in-msg,.in-skip,.in-gl,.in-sp,.in-c,.in-b,.in-p'),function(n){n.style.transition='opacity .3s';n.style.animation='none';n.style.opacity='0'});
+    [].forEach.call(el.querySelectorAll('.in-logo,.in-msg,.in-skip,.in-gl,.in-sp,.in-c,.in-b,.in-p,.in-l'),function(n){n.style.transition='opacity .3s';n.style.animation='none';n.style.opacity='0'});
     var g='';
     for(var q=0;q<120;q++){
       var s2=R(10,24),y0=R(-30,ch*.95);
