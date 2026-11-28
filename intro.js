@@ -43,6 +43,8 @@ function start(){
   '@keyframes in-pop{0%{opacity:0;transform:scale(.6) rotate(-6deg)}100%{opacity:1;transform:scale(1) rotate(0)}}'+
   '@keyframes in-msg{to{opacity:1;transform:translateX(-50%) scale(1)}}'+
   '@keyframes in-skip{to{opacity:.9}}'+
+  '#intro .in-go{font-size:15px;opacity:1;animation:in-blink 1.4s ease-in-out infinite}'+
+  '@keyframes in-blink{0%,100%{opacity:.35;transform:scale(.97)}50%{opacity:1;transform:scale(1.03)}}'+
   '@keyframes in-tw{0%,100%{opacity:0;transform:scale(.2) rotate(0)}50%{opacity:1;transform:scale(1) rotate(45deg)}}'+
   '@keyframes in-fall{0%{opacity:0;transform:translate3d(var(--x0),0,0) rotate(var(--r0))}10%{opacity:1}90%{opacity:1}100%{opacity:0;transform:translate3d(var(--x1),calc(100vh + 80px),0) rotate(calc(var(--r0) + 300deg))}}'+
   '@keyframes in-flip{0%{transform:translateX(-14px) rotateY(0) rotateZ(-20deg)}100%{transform:translateX(14px) rotateY(200deg) rotateZ(30deg)}}'+
@@ -85,7 +87,8 @@ function start(){
   var done=false;
   function end(){if(done)return;done=true;el.classList.add('out');setTimeout(function(){el.remove();st.remove()},1000)}
   el.addEventListener('click',end);
-  setTimeout(end,7800);
+  var sk=el.querySelector('.in-skip');
+  setTimeout(function(){if(done||!sk)return;sk.textContent='タップしてはじめる';sk.className='in-skip in-go'},6900);
 }
 if(root.classList.contains('locked'))window.addEventListener('hana-unlock',start,{once:true});
 else if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);
