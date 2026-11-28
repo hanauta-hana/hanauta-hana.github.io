@@ -18,7 +18,7 @@ function start(){
   '#intro.out{opacity:0;pointer-events:none}'+
   '#intro .in-vp{position:absolute;inset:0;z-index:2;-webkit-mask-image:'+M+';mask-image:'+M+';-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:0 var(--y1);mask-position:0 var(--y1);-webkit-mask-size:100% var(--h1);mask-size:100% var(--h1);animation:in-mask 6s .9s both}'+
   '#intro .in-cam{position:absolute;left:0;top:5%;width:100%;height:88%;transform-origin:40% 18%;animation:in-cam 6s .9s both}'+
-  '#intro .in-img{display:block;width:100%;height:100%;object-fit:contain;opacity:0;filter:drop-shadow(0 6px 14px rgba(160,50,100,.35));animation:in-rise .5s 1.1s ease-out forwards}'+
+  '#intro .in-img{display:block;width:100%;height:100%;object-fit:contain;opacity:0;filter:drop-shadow(0 6px 14px rgba(160,50,100,.35));animation:in-rise .6s .3s ease-out forwards}'+
   '#intro .in-logo{position:absolute;z-index:3;top:calc(env(safe-area-inset-top,0px) + 14px);right:4%;width:40%;height:auto;opacity:0;transform:scale(.6) rotate(-6deg);animation:in-pop .8s 5.9s cubic-bezier(.2,1.5,.4,1) forwards;filter:drop-shadow(0 2px 6px rgba(107,40,70,.45))}'+
   '#intro .in-msg{position:absolute;z-index:3;left:0;right:0;top:37%;display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none}'+
   '#intro .in-msg .tx{white-space:nowrap;color:#fff;font:500 17px "Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;letter-spacing:.2em;text-shadow:0 0 6px rgba(224,112,159,.95),0 0 12px rgba(224,112,159,.7),0 1px 10px rgba(160,50,100,.6)}'+
@@ -41,6 +41,10 @@ function start(){
   '@keyframes in-gl{0%{opacity:0;transform:scale(.7)}25%{opacity:1;transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:scale(1.15)}}'+
   '@keyframes in-orbit{0%{opacity:0;transform:rotate(0) scale(var(--sx),var(--sy))}12%{opacity:1}85%{opacity:1}100%{opacity:0;transform:rotate(540deg) scale(var(--sx),var(--sy))}}'+
   '@keyframes in-ccw{to{transform:rotate(-540deg)}}'+
+  '#intro .in-c b{animation:none}'+
+  '#intro .in-vp{-webkit-mask:none;mask:none;animation:none}'+
+  '#intro .in-c{position:absolute;z-index:4;left:0;top:0;width:var(--s);height:var(--s);filter:saturate(1.15);animation:in-clear 1.2s var(--l) cubic-bezier(.5,0,.8,.4) both}'+
+  '@keyframes in-clear{0%{transform:translate(var(--x),var(--y)) rotate(var(--r0));opacity:1}100%{transform:translate(calc(var(--x) + var(--cx)),calc(var(--y) + var(--cy))) rotate(calc(var(--r0) + 560deg));opacity:0}}'+
   '@keyframes in-mask{0%,32%{-webkit-mask-position:0 var(--y1);mask-position:0 var(--y1);-webkit-mask-size:100% var(--h1);mask-size:100% var(--h1)}46%,60%{-webkit-mask-position:0 var(--y1);mask-position:0 var(--y1);-webkit-mask-size:100% var(--h2);mask-size:100% var(--h2)}76%,100%{-webkit-mask-position:0 -12vh;mask-position:0 -12vh;-webkit-mask-size:100% 124vh;mask-size:100% 124vh}}'+
   /* カメラ: 手 → (風で切替)顔 → 全身 */
   '@keyframes in-cam{0%{transform:scale(1.04)}100%{transform:scale(1)}}'+
@@ -66,13 +70,19 @@ function start(){
   h+='<div class="in-gl" style="left:'+(cw/2-290)+'px;top:'+(midY-TH*.75)+'px;width:580px;height:'+(TH*1.5)+'px;animation:in-gl 2.5s .9s both"></div>';
   h+='<div class="in-gl" style="left:'+(cw/2-290)+'px;top:'+(botY-TH*.75)+'px;width:580px;height:'+(TH*1.5)+'px;animation:in-gl 2.3s 3.3s both"></div>';
   h+='<div class="in-gl" style="left:'+(cw/2-290)+'px;top:'+(topY-TH*.75)+'px;width:580px;height:'+(TH*1.5)+'px;animation:in-gl 2.3s 4.6s both"></div>';
+  /* 一面の桜でおおいかくす → 真ん中・下・上の順に風で散って、イラストが見える */
+  for(var cn=0;cn<420;cn++){
+    var cs=R(70,130),cx0=R(-30,cw-20),cy0=R(-30,ch-30),cband=(cy0+cs/2<T0+TH*2&&cy0+cs/2>T0+TH)?0:(cy0+cs/2>=T0+TH*2?1:2),
+        ctm=cband===0?R(1.6,3.2):(cband===1?R(3.2,4.7):R(4.7,6.2));
+    h+='<i class="in-c" style="--s:'+cs.toFixed(0)+'px;--x:'+cx0.toFixed(0)+'px;--y:'+cy0.toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--cx:'+(cw*R(.7,1.3)+120).toFixed(0)+'px;--cy:'+R(-260,160).toFixed(0)+'px;--l:'+ctm.toFixed(2)+'s;--f:'+R(1.4,3).toFixed(2)+'s;filter:brightness('+R(.9,1.12).toFixed(2)+') saturate('+R(.8,1.5).toFixed(2)+') hue-rotate('+Math.floor(R(-12,10))+'deg)"><b style="background-image:url('+P()+')"></b></i>';
+  }
   /* ゆるく落ちる花びら */
   for(var i=0;i<40;i++){
     var x0=R(0,W);
     h+='<i class="in-p" style="--s:'+R(10,20).toFixed(0)+'px;--x0:'+x0.toFixed(0)+'px;--x1:'+(x0+R(-90,90)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+R(2.8,4.4).toFixed(2)+'s;--l:'+R(0,5.2).toFixed(2)+'s;--f:'+R(.9,2.1).toFixed(2)+'s"><b style="background-image:url('+P()+')"></b></i>';
   }
   /* 風で流れる花びら(桜吹雪): [開始秒, 本数, 向き(1=右へ,-1=左へ), 継続秒] */
-  [[0.15,70,1,1.5],[2.0,80,-1,1.5],[4.3,110,1,1.9]].forEach(function(g){
+  [[1.2,70,1,1.5],[2.9,80,-1,1.5],[4.5,110,1,1.9]].forEach(function(g){
     for(var q=0;q<g[1];q++){
       var s=R(10,22),xs=g[2]>0?-70-R(0,80):W+70+R(0,80),xe=g[2]>0?W+70+R(0,120):-70-R(0,120),y0=R(-30,H*.95);
       h+='<i class="in-w" style="--s:'+s.toFixed(0)+'px;--x0:'+xs.toFixed(0)+'px;--x1:'+xe.toFixed(0)+'px;--y0:'+y0.toFixed(0)+'px;--y1:'+(y0+R(-200,260)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+R(g[3]*.8,g[3]*1.4).toFixed(2)+'s;--l:'+(g[0]+R(0,g[3]*.6)).toFixed(2)+'s"><b style="--f:'+R(.5,1.2).toFixed(2)+'s;background-image:url('+P()+')"></b></i>';
@@ -100,7 +110,7 @@ function start(){
     f.style.cssText='position:absolute;z-index:3;left:0;top:0;transform-origin:0 0;filter:drop-shadow(0 6px 14px rgba(160,50,100,.35));transition:opacity .35s ease;will-change:transform';
     el.appendChild(f);
     var vp=el.querySelector('.in-vp');if(vp)vp.style.visibility='hidden';
-    [].forEach.call(el.querySelectorAll('.in-logo,.in-msg,.in-skip,.in-gl,.in-sp'),function(n){n.style.transition='opacity .3s';n.style.animation='none';n.style.opacity='0'});
+    [].forEach.call(el.querySelectorAll('.in-logo,.in-msg,.in-skip,.in-gl,.in-sp,.in-c'),function(n){n.style.transition='opacity .3s';n.style.animation='none';n.style.opacity='0'});
     var g='';
     for(var q=0;q<120;q++){
       var s2=R(10,24),y0=R(-30,ch*.95);
