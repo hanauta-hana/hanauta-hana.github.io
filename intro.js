@@ -36,7 +36,7 @@ function start(){
   '@keyframes in-gl{0%{opacity:0;transform:scale(.7)}25%{opacity:1;transform:scale(1)}80%{opacity:1}100%{opacity:0;transform:scale(1.15)}}'+
   '@keyframes in-orbit{0%{opacity:0;transform:rotate(0) scale(var(--sx),var(--sy))}12%{opacity:1}85%{opacity:1}100%{opacity:0;transform:rotate(540deg) scale(var(--sx),var(--sy))}}'+
   '@keyframes in-ccw{to{transform:rotate(-540deg)}}'+
-  '@keyframes in-mask{0%,38%{-webkit-mask-size:380px 150px;mask-size:380px 150px;-webkit-mask-position:calc(var(--hx) - 190px) calc(var(--hy) - 45px);mask-position:calc(var(--hx) - 190px) calc(var(--hy) - 45px)}40%,60%{-webkit-mask-size:340px 340px;mask-size:340px 340px;-webkit-mask-position:calc(var(--fx) - 170px) calc(var(--fy) - 145px);mask-position:calc(var(--fx) - 170px) calc(var(--fy) - 145px)}76%,100%{-webkit-mask-size:320vmax 320vmax;mask-size:320vmax 320vmax;-webkit-mask-position:calc(50vw - 160vmax) calc(50vh - 160vmax);mask-position:calc(50vw - 160vmax) calc(50vh - 160vmax)}}'+
+  '@keyframes in-mask{0%,32%{-webkit-mask-size:380px 150px;mask-size:380px 150px;-webkit-mask-position:calc(var(--hx) - 190px) calc(var(--hy) - 45px);mask-position:calc(var(--hx) - 190px) calc(var(--hy) - 45px)}46%,60%{-webkit-mask-size:340px 340px;mask-size:340px 340px;-webkit-mask-position:calc(var(--fx) - 170px) calc(var(--fy) - 145px);mask-position:calc(var(--fx) - 170px) calc(var(--fy) - 145px)}76%,100%{-webkit-mask-size:320vmax 320vmax;mask-size:320vmax 320vmax;-webkit-mask-position:calc(50vw - 160vmax) calc(50vh - 160vmax);mask-position:calc(50vw - 160vmax) calc(50vh - 160vmax)}}'+
   /* カメラ: 手 → (風で切替)顔 → 全身 */
   '@keyframes in-cam{0%{transform:scale(1.04)}100%{transform:scale(1)}}'+
   '@keyframes in-rise{0%{opacity:0}100%{opacity:1}}'+
