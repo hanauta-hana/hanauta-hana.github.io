@@ -88,7 +88,32 @@ function start(){
   h+='<div class="in-msg"><i class="ln"></i><div class="tx">'+tx+'</div><i class="ln"></i></div><div class="in-skip">タップでスキップ</div>';
   el.innerHTML=h;document.body.appendChild(el);
   var done=false;
-  function end(){if(done)return;done=true;el.classList.add('out');setTimeout(function(){el.remove();st.remove()},600)}
+  function plain(){el.classList.add('out');setTimeout(function(){el.remove();st.remove()},600)}
+  function end(){
+    if(done)return;done=true;
+    var hi=document.querySelector('.hero-img>img:first-child'),r=hi&&hi.getBoundingClientRect();
+    if(!r||r.width<50||r.bottom<60||r.top>window.innerHeight){plain();return}
+    /* いまの全身の位置 → ホームの立ち絵の位置へ、桜吹雪にのせて移る */
+    var bw=cw,bh=.88*ch,sc=Math.min(bw/760,bh/1614),sw=760*sc,sh=1614*sc,sx=(bw-sw)/2,sy=.05*ch+(bh-sh)/2;
+    var tx=r.left+85/900*r.width,ty=r.top+8/1600*r.height,tw=750/900*r.width,th=1593/1600*r.height;
+    var f=document.createElement('img');f.src='img/outfit-kimono.webp';f.alt='';
+    f.style.cssText='position:absolute;z-index:3;left:'+sx+'px;top:'+sy+'px;width:'+sw+'px;height:'+sh+'px;filter:drop-shadow(0 6px 14px rgba(160,50,100,.35));transition:left .95s cubic-bezier(.65,0,.2,1),top .95s cubic-bezier(.65,0,.2,1),width .95s cubic-bezier(.65,0,.2,1),height .95s cubic-bezier(.65,0,.2,1),opacity .35s ease';
+    el.appendChild(f);
+    var vp=el.querySelector('.in-vp');if(vp)vp.style.visibility='hidden';
+    [].forEach.call(el.querySelectorAll('.in-logo,.in-msg,.in-skip,.in-gl,.in-sp'),function(n){n.style.transition='opacity .3s';n.style.animation='none';n.style.opacity='0'});
+    var g='';
+    for(var q=0;q<120;q++){
+      var s2=R(10,24),y0=R(-30,ch*.95);
+      g+='<i class="in-w" style="--s:'+s2.toFixed(0)+'px;--x0:'+(cw+70+R(0,80)).toFixed(0)+'px;--x1:'+(-80-R(0,120)).toFixed(0)+'px;--y0:'+y0.toFixed(0)+'px;--y1:'+(y0+R(-160,220)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+R(1.2,2.0).toFixed(2)+'s;--l:'+R(0,.7).toFixed(2)+'s"><b style="--f:'+R(.5,1.1).toFixed(2)+'s;background-image:url('+P()+')"></b></i>';
+    }
+    el.insertAdjacentHTML('beforeend',g);
+    el.style.transition='background-color .5s .5s';el.style.background='transparent';
+    f.getBoundingClientRect();
+    f.style.left=tx+'px';f.style.top=ty+'px';f.style.width=tw+'px';f.style.height=th+'px';
+    setTimeout(function(){f.style.opacity='0'},950);
+    setTimeout(function(){el.style.transition='opacity .4s';el.style.opacity='0'},1500);
+    setTimeout(function(){el.remove();st.remove()},2000);
+  }
   el.addEventListener('click',end);
   var sk=el.querySelector('.in-skip');
   setTimeout(function(){if(done||!sk)return;sk.textContent='タップしてはじめる';sk.className='in-skip in-go'},6900);
