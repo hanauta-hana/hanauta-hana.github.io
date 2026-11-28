@@ -28,12 +28,12 @@ function start(){
   '@keyframes in-ln{to{width:min(240px,64vw)}}'+
   '#intro .in-skip{position:absolute;z-index:5;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 22px);text-align:center;font:700 12px "Zen Maru Gothic",sans-serif;color:#fff;text-shadow:0 1px 4px rgba(107,40,70,.6);opacity:0;animation:in-skip .6s .8s forwards}'+
   /* ふわっと落ちる花びら(背景側) */
-  '#intro .in-p{position:absolute;top:-50px;left:0;z-index:1;width:var(--s);height:var(--s);opacity:0;filter:saturate(.8) drop-shadow(0 0 3px rgba(228,134,174,.6));animation:in-fall var(--d) var(--l) linear forwards}'+
+  '#intro .in-p{position:absolute;top:-50px;left:0;z-index:1;width:var(--s);height:var(--s);opacity:0;animation:in-fall var(--d) var(--l) linear forwards}'+
   '#intro b{display:block;width:100%;height:100%;background-size:contain;background-repeat:no-repeat;background-position:center;animation:in-flip var(--f) ease-in-out infinite alternate}'+
   /* 風で流れる花びら(手前) */
-  '#intro .in-w{position:absolute;top:0;left:0;z-index:4;width:var(--s);height:var(--s);opacity:0;filter:saturate(1.5) drop-shadow(0 0 3px rgba(228,134,174,.7));animation:in-sweep var(--d) var(--l) cubic-bezier(.3,.1,.5,1) forwards}'+
+  '#intro .in-w{position:absolute;top:0;left:0;z-index:4;width:var(--s);height:var(--s);opacity:0;animation:in-sweep var(--d) var(--l) cubic-bezier(.3,.1,.5,1) forwards}'+
   /* ぱあっと広がる花びら */
-  '#intro .in-b{position:absolute;left:50%;top:46%;z-index:4;width:var(--s);height:var(--s);margin:calc(var(--s)/-2) 0 0 calc(var(--s)/-2);opacity:0;filter:saturate(1.5) drop-shadow(0 0 4px rgba(255,255,255,.9));animation:in-burst var(--d) var(--l) cubic-bezier(.1,.7,.3,1) forwards}'+
+  '#intro .in-b{position:absolute;left:50%;top:46%;z-index:4;width:var(--s);height:var(--s);margin:calc(var(--s)/-2) 0 0 calc(var(--s)/-2);opacity:0;animation:in-burst var(--d) var(--l) cubic-bezier(.1,.7,.3,1) forwards}'+
   '#intro .in-sp{position:absolute;z-index:3;width:var(--s);height:var(--s);background:#fff;clip-path:polygon(50% 0,61% 39%,100% 50%,61% 61%,50% 100%,39% 61%,0 50%,39% 39%);opacity:0;filter:drop-shadow(0 0 4px #ffd1e6);animation:in-tw 1.4s var(--l) ease-in-out infinite}'+
 '#intro .in-gl{position:absolute;z-index:1;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.95),rgba(255,235,245,.55) 55%,rgba(255,255,255,0));opacity:0}'+
   '#intro .in-or{position:absolute;z-index:4;width:0;height:0;opacity:0;animation:in-orbit var(--d) var(--l) linear forwards}'+
@@ -43,7 +43,7 @@ function start(){
   '@keyframes in-ccw{to{transform:rotate(-540deg)}}'+
   '#intro .in-c b{animation:none}'+
   '#intro .in-vp{-webkit-mask:none;mask:none;animation:none}'+
-  '#intro .in-c{position:absolute;z-index:4;left:0;top:0;width:var(--s);height:var(--s);filter:saturate(1.15);animation:in-clear 1.2s var(--l) cubic-bezier(.5,0,.8,.4) both}'+
+  '#intro .in-c{position:absolute;z-index:4;left:0;top:0;width:var(--s);height:var(--s);animation:in-clear 1.2s var(--l) cubic-bezier(.5,0,.8,.4) both}'+
   '@keyframes in-clear{0%{transform:translate(var(--x),var(--y)) rotate(var(--r0));opacity:1}100%{transform:translate(calc(var(--x) + var(--cx)),calc(var(--y) + var(--cy))) rotate(calc(var(--r0) + 560deg));opacity:0}}'+
   '@keyframes in-mask{0%,32%{-webkit-mask-position:0 var(--y1);mask-position:0 var(--y1);-webkit-mask-size:100% var(--h1);mask-size:100% var(--h1)}46%,60%{-webkit-mask-position:0 var(--y1);mask-position:0 var(--y1);-webkit-mask-size:100% var(--h2);mask-size:100% var(--h2)}76%,100%{-webkit-mask-position:0 -12vh;mask-position:0 -12vh;-webkit-mask-size:100% 124vh;mask-size:100% 124vh}}'+
   /* カメラ: 手 → (風で切替)顔 → 全身 */
@@ -74,7 +74,7 @@ function start(){
   for(var cn=0;cn<420;cn++){
     var cs=R(70,130),cx0=R(-30,cw-20),cy0=R(-30,ch-30),cband=(cy0+cs/2<T0+TH*2&&cy0+cs/2>T0+TH)?0:(cy0+cs/2>=T0+TH*2?1:2),
         ctm=cband===0?R(1.6,3.2):(cband===1?R(3.2,4.7):R(4.7,6.2));
-    h+='<i class="in-c" style="--s:'+cs.toFixed(0)+'px;--x:'+cx0.toFixed(0)+'px;--y:'+cy0.toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--cx:'+(cw*R(.7,1.3)+120).toFixed(0)+'px;--cy:'+R(-260,160).toFixed(0)+'px;--l:'+ctm.toFixed(2)+'s;--f:'+R(1.4,3).toFixed(2)+'s;filter:brightness('+R(.9,1.12).toFixed(2)+') saturate('+R(.8,1.5).toFixed(2)+') hue-rotate('+Math.floor(R(-12,10))+'deg)"><b style="background-image:url('+P()+')"></b></i>';
+    h+='<i class="in-c" style="--s:'+cs.toFixed(0)+'px;--x:'+cx0.toFixed(0)+'px;--y:'+cy0.toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--cx:'+(cw*R(.7,1.3)+120).toFixed(0)+'px;--cy:'+R(-260,160).toFixed(0)+'px;--l:'+ctm.toFixed(2)+'s;--f:'+R(1.4,3).toFixed(2)+'s;opacity:'+R(.82,1).toFixed(2)+'"><b style="background-image:url('+P()+')"></b></i>';
   }
   /* ゆるく落ちる花びら */
   for(var i=0;i<40;i++){
@@ -107,7 +107,7 @@ function start(){
     var bw=cw,bh=.88*ch,sc=Math.min(bw/760,bh/1614),sw=760*sc,sh=1614*sc,sx=(bw-sw)/2,sy=.05*ch+(bh-sh)/2;
     var tx=r.left+85/900*r.width,ty=r.top+8/1600*r.height,tw=750/900*r.width,th=1593/1600*r.height;
     var f=document.createElement('img');f.src='img/outfit-kimono.webp';f.alt='';
-    f.style.cssText='position:absolute;z-index:3;left:0;top:0;transform-origin:0 0;filter:drop-shadow(0 6px 14px rgba(160,50,100,.35));transition:opacity .35s ease;will-change:transform';
+    f.style.cssText='position:absolute;z-index:3;left:0;top:0;transform-origin:0 0;transition:opacity .6s ease;will-change:transform';
     el.appendChild(f);
     var vp=el.querySelector('.in-vp');if(vp)vp.style.visibility='hidden';
     [].forEach.call(el.querySelectorAll('.in-logo,.in-msg,.in-skip,.in-gl,.in-sp,.in-c'),function(n){n.style.transition='opacity .3s';n.style.animation='none';n.style.opacity='0'});
@@ -117,7 +117,6 @@ function start(){
       g+='<i class="in-w" style="--s:'+s2.toFixed(0)+'px;--x0:'+(cw+70+R(0,80)).toFixed(0)+'px;--x1:'+(-80-R(0,120)).toFixed(0)+'px;--y0:'+y0.toFixed(0)+'px;--y1:'+(y0+R(-160,220)).toFixed(0)+'px;--r0:'+Math.floor(R(0,360))+'deg;--d:'+R(1.2,2.0).toFixed(2)+'s;--l:'+R(0,.7).toFixed(2)+'s"><b style="--f:'+R(.5,1.1).toFixed(2)+'s;background-image:url('+P()+')"></b></i>';
     }
     el.insertAdjacentHTML('beforeend',g);
-    el.style.transition='background-color .5s .5s';el.style.background='transparent';
     function tgt(){var q=hi.getBoundingClientRect();return {x:q.left+89/900*q.width,y:q.top+16/1600*q.height,w:741/900*q.width,h:1574/1600*q.height}}
     var t0=performance.now(),DUR=950;
     function place(x,y,w,h){f.style.width=w+'px';f.style.height=h+'px';f.style.transform='translate('+x+'px,'+y+'px)'}
@@ -128,10 +127,8 @@ function start(){
       if(p<1)requestAnimationFrame(step);else{var live=function(){if(!f.isConnected)return;var T2=tgt();place(T2.x,T2.y,T2.w,T2.h);requestAnimationFrame(live)};live()}
     }
     place(sx,sy,sw,sh);requestAnimationFrame(step);
-    el.style.transition='background-color .5s .5s';el.style.background='transparent';
-    setTimeout(function(){f.style.opacity='0'},950);
-    setTimeout(function(){el.style.transition='opacity .4s';el.style.opacity='0'},1500);
-    setTimeout(function(){el.remove();st.remove()},2000);
+    setTimeout(function(){el.style.transition='opacity .6s ease';el.style.opacity='0'},1000);
+    setTimeout(function(){el.remove();st.remove()},1700);
   }
   el.addEventListener('click',end);
   var sk=el.querySelector('.in-skip');
