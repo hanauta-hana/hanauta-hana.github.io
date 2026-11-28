@@ -70,7 +70,7 @@ function start(){
   for(var pi=0;pi<8;pi++){srcs.push('img/petal/p'+pi+'.png');for(var pv=0;pv<4;pv++)srcs.push('img/petal/c'+pi+'abcd'.charAt(pv)+'.png')}
   var left=srcs.length,built=false;
   function go(){if(built)return;built=true;build()}
-  srcs.forEach(function(u){var im=new Image();im.onload=im.onerror=function(){if(--left<=0)go()};im.src=u});
+  srcs.forEach(function(u){var im=new Image(),fin=function(){if(--left<=0)go()};im.src=u;if(im.decode)im.decode().then(fin,fin);else{im.onload=im.onerror=fin}});
   setTimeout(go,1800);
   function build(){
   var el=document.createElement('div');el.id='intro';el.setAttribute('aria-hidden','true');
@@ -163,7 +163,8 @@ function start(){
   el.addEventListener('click',end);
   var sk=el.querySelector('.in-skip');
   setTimeout(function(){if(done||!sk)return;sk.textContent='タップしてはじめる';sk.className='in-skip in-go'},6900);
-  pre.remove();
+  /* 花びらが描画されてから幕を外す(途中の状態を見せない) */
+  requestAnimationFrame(function(){requestAnimationFrame(function(){setTimeout(function(){pre.remove()},200)})});
   }
 }
 if(root.classList.contains('locked'))window.addEventListener('hana-unlock',start,{once:true});
